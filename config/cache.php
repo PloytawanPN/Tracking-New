@@ -92,6 +92,23 @@ return [
 
     ],
 
+    'Active_Status' => [
+        0 => ['name'=> 'Inactive'],
+        1 => ['name'=> 'Active'],
+    ],
+    'Export Status' => [
+        0 => ['name'=> 'Inactive'],
+        1 => ['name'=> 'Active'],
+    ],
+    'Sold Status' => [
+        0 => ['name'=> 'Not Sold'],
+        1 => ['name'=> 'Sold'],
+    ],
+    'Status' => [
+        0 => ['name'=> 'Inactive'],
+        1 => ['name'=> 'Active'],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Cache Key Prefix
@@ -103,6 +120,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache_'),
 
 ];
