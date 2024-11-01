@@ -7,17 +7,18 @@
                         <h5>QR Code List</h5>
                         <div>
                             <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addQrCodeModal">
-                                <i class="fas fa-plus me-1"></i>Add
+                                <i class='bx bx-plus me-1'></i>Add
                             </button>
-                            <button class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#filterQrCodeModal">
-                                <i class="fas fa-filter me-1"></i>Filter
+                            <button class="btn btn-warning me-2" data-bs-toggle="modal"
+                                data-bs-target="#filterQrCodeModal">
+                                <i class='bx bx-filter me-1'></i>Filter
                             </button>
                             <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exportQrCodeModal">
-                                <i class="fas fa-file-export me-1"></i>Export
+                                <i class='bx bx-export me-1'></i>Export
                             </button>
                         </div>
                     </div>
-                    <div class="tab-content">
+                    <div class="tab-content" wire:ignore>
                         <div class="tab-pane show active" id="fixed-header-preview">
                             <table id="alternative-page-datatable" class="table dt-responsive nowrap w-100">
                                 <thead>
@@ -31,7 +32,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- Data will be populated here --}}
+
                                 </tbody>
                             </table>
                         </div> <!-- end preview-->
@@ -42,7 +43,6 @@
     </div> <!-- end row-->
 
 
-    <!-- Modal for adding QR Code -->
     <div class="modal fade" id="addQrCodeModal" tabindex="-1" aria-labelledby="addQrCodeModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -54,13 +54,14 @@
                     <form id="addQrCodeForm">
                         <div class="mb-3">
                             <label for="numberOfQRCodes" class="form-label">Number of QR Codes to Create</label>
-                            <input type="number" class="form-control" id="numberOfQRCodes" min="1" required>
+                            <input type="number" wire:model.defer="numberOfQRCodes" class="form-control" id="numberOfQRCodes" min="1" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveQrCode">Submit</button>
+                    <button type="button" class="btn btn-primary" id="saveQrCode">Create</button>
+                    <button type="button" class="btn btn-primary d-none" id="create_qr" wire:click='createQrCodes'></button>
                 </div>
             </div>
         </div>
@@ -138,4 +139,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('saveQrCode').addEventListener('click', function() {
+                const numberOfQRCodes = document.getElementById('numberOfQRCodes').value;
+    
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You are about to create " + numberOfQRCodes + " QR Code(s)!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, create it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#create_qr').click();
+                        $('#addQrCodeModal').modal('hide');
+                    }
+                });
+            });
+        });
+        window.addEventListener('qrCodesCreated', (event) => {
+            Swal.fire({
+                title: 'Success!',
+                text: event.detail[0].message,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            });
+        });
+        window.addEventListener('qrCodesFalse', (event) => {
+        Swal.fire({
+            title: 'Error!',
+            text: event.detail[0].message,
+            icon: 'error',
+            confirmButtonText: 'Okay'
+        });
+    });
+    </script>
 </div>
