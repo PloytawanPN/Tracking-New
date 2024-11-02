@@ -18,6 +18,8 @@ class qr_codes extends Model
         'active_at',
         'export_at',
         'status',
+        'produce_st',
+        'produce_at',
         'sold_st',
         'sold_at'
     ];

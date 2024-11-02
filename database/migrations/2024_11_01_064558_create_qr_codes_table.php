@@ -19,8 +19,13 @@ return new class extends Migration
             $table->dateTime('active_at')->nullable();
             $table->integer('export_st');
             $table->dateTime('export_at')->nullable();
+            
+            $table->integer('produce_st');
+            $table->dateTime('produce_at')->nullable();
+
             $table->integer('sold_st');
             $table->dateTime('sold_at')->nullable();
+
             $table->integer('status');
             $table->timestamps();
         });

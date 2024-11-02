@@ -27,9 +27,15 @@
             <li class="side-nav-title">Apps</li>
 
             <li class="side-nav-item">
-                <a href="{{route('QrCodeList')}}" class="side-nav-link">
-                    <i class="uil-calender"></i>
+                <a href="{{ route('QrCodeList') }}" class="side-nav-link">
+                    <i class='bx bx-qr'></i> <!-- ใช้ไอคอน QR Code -->
                     <span> QrCode List </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('AdminsList') }}" class="side-nav-link">
+                    <i class='bx bx-user'></i> <!-- ใช้ไอคอนผู้ใช้ -->
+                    <span> Admins </span>
                 </a>
             </li>
 

@@ -104,6 +104,10 @@ return [
         0 => ['name'=> 'Not Sold'],
         1 => ['name'=> 'Sold'],
     ],
+    'Produce Status'=> [
+        0 => ['name'=> 'Inactive'],
+        1 => ['name'=> 'Active'],
+    ],
     'Status' => [
         0 => ['name'=> 'Inactive'],
         1 => ['name'=> 'Active'],

@@ -26,9 +26,10 @@
                                         <th>#</th>
                                         <th>Pet ID</th>
                                         <th>QrCode Data</th>
-                                        <th class="text-center">Active Status</th>
                                         <th class="text-center">Export Status</th>
+                                        <th class="text-center">Produce Status</th>
                                         <th class="text-center">Sold Status</th>
+                                        <th class="text-center">Active Status</th>
                                         <th>Create At</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -41,31 +42,38 @@
                                             <td>{{ $item->pet_code }}</td>
                                             <td>{{ $item->qr_data }}</td>
                                             <td class="text-center">
-                                                @if ($item->active_st == 0)
-                                                    <span class="badge badge-danger-lighten">Inactive</span>
-                                                @else
-                                                    <span class="badge badge-success-lighten">Active</span>
-                                                @endif
-                                            </td>
-                                            <td class="text-center">
                                                 @if ($item->export_st == 0)
                                                     <span class="badge badge-danger-lighten">Inactive</span>
                                                 @else
-                                                    <span class="badge badge-success-lighten">Active</span>
+                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->export_at)->format('d/m/Y H:i') }}</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($item->produce_st == 0)
+                                                    <span class="badge badge-danger-lighten">Inactive</span>
+                                                @else
+                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->produce_at)->format('d/m/Y H:i') }}</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 @if ($item->sold_st == 0)
                                                     <span class="badge badge-danger-lighten">Not Sold</span>
                                                 @else
-                                                    <span class="badge badge-success-lighten">Sold</span>
+                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->sold_at)->format('d/m/Y H:i') }}</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($item->active_st == 0)
+                                                    <span class="badge badge-danger-lighten">Inactive</span>
+                                                @else
+                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->active_at)->format('d/m/Y H:i') }}</span>
                                                 @endif
                                             </td>
                                             <td>{{ $item->created_at }}</td>
                                             <td class="text-center">
-                                                <button type="button" wire:click='Export_qr' class="btn btn-info"><i
-                                                        class='bx bx-qr-scan'></i></button>
-
+                                                <a class="btn btn-info"
+                                                    href="{{ route('download.qr', ['code' => $item->pet_code]) }}"><i
+                                                        class='bx bx-qr-scan'></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -149,6 +157,15 @@
                         </select>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="dropdown2" class="form-label">Produce Status</label>
+                        <select class="form-select" id="dropdown2" wire:model.live='produce_s'>
+                            <option value="" selected>Select an option</option>
+                            <option value="0">Inactive</option>
+                            <option value="1">Active</option>
+                        </select>
+                    </div>
+
                     <!-- Dropdown 3 -->
                     <div class="mb-3">
                         <label for="dropdown3" class="form-label">Sold Status</label>
@@ -171,7 +188,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" onclick="clearFilters()">Clear Filter</button>
+                    <button type="button" class="btn btn-light" wire:click="clearFilters">Clear Filter</button>
                 </div>
             </div>
         </div>
@@ -182,37 +199,41 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exportQrCodeModalLabel">Export QR Code</h5>
+                    <h5 class="modal-title" id="exportQrCodeModalLabel">Download QR Codes</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="exportForm">
                         <div class="mb-3">
-                            <label for="exportFormat" class="form-label">Select Format</label>
-                            <select class="form-select" id="exportFormat" name="exportFormat">
-                                <option value="csv">CSV</option>
-                                <option value="xlsx">Excel</option>
-                                <option value="pdf">PDF</option>
-                            </select>
+                            <label for="startCode" class="form-label">Start Code</label>
+                            <input type="text" class="form-control" id="startCode" name="startCode" required>
                         </div>
                         <div class="mb-3">
-                            <label for="includeHeaders" class="form-label">Include Headers</label>
-                            <div>
-                                <input type="checkbox" id="includeHeaders" name="includeHeaders" checked>
-                                <label for="includeHeaders" class="form-check-label">Yes, include headers</label>
-                            </div>
+                            <label for="endCode" class="form-label">End Code</label>
+                            <input type="text" class="form-control" id="endCode" name="endCode" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="exportData()">Export</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadRange()">Download</button>
                 </div>
             </div>
         </div>
     </div>
 
+
     <script>
+        function downloadRange() {
+            const start = document.getElementById('startCode').value;
+            const end = document.getElementById('endCode').value;
+            if (!start || !end) {
+                alert('Please enter both start and end codes.');
+                return;
+            }
+            const url = `/download-qr/${start}/${end}`;
+            window.location.href = url;
+        }
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('saveQrCode').addEventListener('click', function() {
                 const numberOfQRCodes = document.getElementById('numberOfQRCodes').value;
@@ -250,13 +271,5 @@
             });
         });
 
-        function clearFilters() {
-            @this.set('active_s', '');
-            @this.set('export_s', '');
-            @this.set('sold_s', '');
-            @this.set('start_d', null);
-            @this.set('end_d', null);
-            $('#filterQrCodeModal').modal('hide');
-        }
     </script>
 </div>

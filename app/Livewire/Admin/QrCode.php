@@ -5,14 +5,23 @@ namespace App\Livewire\Admin;
 use App\Models\qr_codes;
 use Livewire\Component;
 use Livewire\WithPagination;
-use SimpleSoftwareIO\QrCode\Facades\QrCode as GenQrCode;
 
 
 class QrCode extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search;
+    public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search,$produce_s;
+
+    public function clearFilters(){
+        $this->active_s=null;
+        $this->export_s=null;
+        $this->sold_s=null;
+        $this->start_d=null;
+        $this->end_d=null;
+        $this->search=null;
+        $this->produce_s=null;
+    }
 
     public function createQrCodes()
     {
@@ -65,6 +74,7 @@ class QrCode extends Component
                     'active_st' => 0,
                     'export_st' => 0,
                     'sold_st' => 0,
+                    'produce_st'=> 0,
                     'status' => 1,
                 ]);
             }
@@ -88,12 +98,6 @@ class QrCode extends Component
             ->header('Content-Type', 'image/png')
             ->header('Content-Disposition', 'attachment; filename="qrcode.png"');
     }
-    public function generateQrCode()
-    {
-        return GenQrCode::format('png')
-            ->size(200)
-            ->generate('123456');
-    }
     public function render()
     {
         $query = qr_codes::orderBy('id');
@@ -106,6 +110,9 @@ class QrCode extends Component
         }
         if ($this->sold_s) {
             $query->where('sold_st', $this->sold_s);
+        }
+        if ($this->produce_s) {
+            $query->where('produce_st', $this->produce_s);
         }
         if ($this->start_d) {
             $query->where('created_at', '>=', $this->start_d);
