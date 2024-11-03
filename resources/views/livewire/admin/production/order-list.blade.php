@@ -35,7 +35,7 @@
                                             <td class="text-center">{{ number_format($item->total_price, 0) }} ฿</td>
                                             <td class="text-center">{{ \Carbon\Carbon::parse($item->order_at)->format('d/m/Y H:i') }}</td>
                                             <td class="text-center">
-                                                <a class="btn btn-info">
+                                                <a href="{{ route('production.view', ['id' => Crypt::encryptString($item->order_id)]) }}" class="btn btn-info">
                                                     <i class='bx bx-show'></i>
                                                 </button>
                                             </td>

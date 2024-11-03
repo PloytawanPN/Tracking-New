@@ -17,6 +17,7 @@ Route::get('/AdminsList', [AdminsController::class, 'AdminsList'])->name('Admins
 Route::prefix('production')->group(function () {
     Route::get('/', [ProductionController::class, 'list'])->name('production.list');
     Route::get('/create', [ProductionController::class, 'create'])->name('production.create');
+    Route::get('/view/{id}', [ProductionController::class, 'view'])->name('production.view');
 });
 
 /* ---------------------------------------------------------- */

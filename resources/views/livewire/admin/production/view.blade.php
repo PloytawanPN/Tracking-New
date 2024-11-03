@@ -3,16 +3,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title"><a href="{{route('production.list')}}"><i class='bx bxs-left-arrow'></i></a>New production order
+                    <h4 class="header-title"><a href="{{route('production.list')}}"><i class='bx bxs-left-arrow'></i></a>Production order : {{$OrderDetail->order_id}}
                     </h4>
-                    <p class="text-muted font-14">Please fill in the details for the new production order.</p>
+                    <p class="text-muted font-14">View details for this production order.</p>
                     <div class="tab-content">
                         <div class="tab-pane show active" id="input-types-preview">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Production Order ID</label>
-                                        <input type="text" class="form-control" @disabled(true)
+                                        <input type="text" class="form-control" readonly
                                             wire:model='order_id'>
                                     </div>
                                 </div>
@@ -20,17 +20,14 @@
                                     <!-- Title and Add Order Button -->
                                     <div class="d-flex justify-content-between align-items-center mb-1">
                                         <label for="simpleinput" class="form-label">Order List</label>
-                                        <button class="btn btn-info" data-bs-toggle="modal"
-                                            data-bs-target="#addorder">Add Order</button>
                                     </div>
 
                                     <!-- Order List Table -->
                                     <table class="table table-bordered table-centered mb-0">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">#</th>
-                                                <th>Pet Code</th>
-                                                <th class="text-center">Action</th>
+                                                <th class="text-center col-1">#</th>
+                                                <th class="text-center">Pet Code</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -39,13 +36,7 @@
                                                     <td class="text-center">
                                                         {{ $loop->iteration }}
                                                     </td>
-                                                    <td>{{ $item['pet_code'] }}</td>
-                                                    <td class="table-action text-center">
-                                                        <a href="#" wire:click='removeRow({{ $item['id'] }})'
-                                                            class="action-icon">
-                                                            <i class="mdi mdi-delete"></i>
-                                                        </a>
-                                                    </td>
+                                                    <td class="text-center">{{ $item['pet_code'] }}</td>
                                                 </tr>
                                             @endforeach
                                             @if (count($order_list) == 0)
@@ -64,20 +55,20 @@
                                 <div class="col-lg-12 mt-3">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Production Order Name</label>
-                                        <input type="text" class="form-control" wire:model='order_name'>
+                                        <input type="text" class="form-control" wire:model='order_name' readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Product Details</label>
-                                        <textarea type="text" class="form-control" wire:model='order_detail' style="height: 150px;"></textarea>
+                                        <textarea type="text" class="form-control" wire:model='order_detail' readonly style="height: 150px;"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Production Channel</label>
-                                        <input type="text" class="form-control" wire:model='order_channel'>
+                                        <input type="text" class="form-control" wire:model='order_channel'readonly>
                                     </div>
                                 </div>
 
@@ -85,47 +76,44 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Production Quantity</label>
-                                        <input type="number" class="form-control" @disabled(true)
+                                        <input type="number" class="form-control" readonly
                                             wire:model='ProductQuantity'>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Total Price (Bath)</label>
-                                        <input type="number" class="form-control" wire:model.live='total_price'>
+                                        <input type="number" class="form-control" wire:model.live='total_price' readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Unit Price (Bath)</label>
-                                        <input type="number" class="form-control" @disabled(true)
+                                        <input type="number" class="form-control" readonly
                                             wire:model='unit_price'>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Shipping Cost (Bath)</label>
-                                        <input type="number" class="form-control" wire:model='shipping_cost'>
+                                        <input type="number" class="form-control" wire:model='shipping_cost' readonly>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Order Date</label>
-                                        <input class="form-control" type="date" name="date"
+                                        <input class="form-control" type="date" name="date" readonly
                                             wire:model='order_date'>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Received Date</label>
-                                        <input class="form-control" type="date" name="date"
+                                        <input class="form-control" type="date" name="date" readonly
                                             wire:model='received_date'>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" wire:click='create_order'>New
-                                    Order</button>
-
                             </div>
                         </div> <!-- end preview-->
                     </div> <!-- end tab-content-->
@@ -133,79 +121,4 @@
             </div> <!-- end card -->
         </div><!-- end col -->
     </div><!-- end row -->
-
-    <div class="modal fade" id="addorder" tabindex="-1" aria-labelledby="addorder" aria-hidden="true"
-        wire:ignore.self>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addorder">Select pet code</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="mb-2">
-                        <label class="form-label">Start pet code</label>
-                        <input type="text" wire:model.defer="start_code" class="form-control"
-                            placeholder="AA000001">
-                    </div>
-
-                    <div class="mb-2">
-                        <label class="form-label">Last pet code</label>
-                        <input type="text" wire:model.defer="last_code" class="form-control"
-                            placeholder="AA000010">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveQrCode"
-                        wire:click='addOrder'>Create</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        window.addEventListener('orderCreated', (event) => {
-            const originalModal = document.getElementById('addorder');
-            const modalInstance = bootstrap.Modal.getInstance(originalModal);
-
-            if (modalInstance) {
-                modalInstance.hide(); // Close the modal properly
-            }
-
-            Swal.fire({
-                title: 'Success!',
-                text: event.detail[0].message,
-                icon: 'success',
-                confirmButtonText: 'Okay'
-            });
-
-        });
-
-        window.addEventListener('createdSuccess', (event) => {
-            Swal.fire({
-                title: 'Success!',
-                text: event.detail[0].message,
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-            }).then(() => {
-                window.location.href =
-                "{{ route('production.list') }}";
-            });
-        });
-
-        window.addEventListener('orderFalse', (event) => {
-            Swal.fire({
-                title: 'Error!',
-                text: event.detail[0].message,
-                icon: 'error',
-                confirmButtonText: 'Okay'
-            });
-        });
-    </script>
-
 </div>
