@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title"><a href="#"><i class='bx bxs-left-arrow'></i></a>New production order
+                    <h4 class="header-title"><a href="{{route('production.list')}}"><i class='bx bxs-left-arrow'></i></a>New production order
                     </h4>
                     <p class="text-muted font-14">Please fill in the details for the new production order.</p>
                     <div class="tab-content">

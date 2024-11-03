@@ -15,6 +15,7 @@ Route::get('/QrCodeList', [QrCodeController::class, 'QrCodeList'])->name('QrCode
 Route::get('/AdminsList', [AdminsController::class, 'AdminsList'])->name('AdminsList');
 
 Route::prefix('production')->group(function () {
+    Route::get('/', [ProductionController::class, 'list'])->name('production.list');
     Route::get('/create', [ProductionController::class, 'create'])->name('production.create');
 });
 

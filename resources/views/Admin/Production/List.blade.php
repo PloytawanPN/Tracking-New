@@ -1,9 +1,9 @@
 @extends('Admin.Layout.Layout')
 @section('title')
-    Production create order
+    Production order list
 @endsection
 @section('content')
-    <livewire:admin.production.create />
+    <livewire:admin.production.order-list />
 @endsection
 
 @section('style')

@@ -35,7 +35,7 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="{{ route('production.create') }}" class="side-nav-link">
+                <a href="{{ route('production.list') }}" class="side-nav-link">
                     <i class='bx bx-box'></i>
                     <span>Production</span>
                 </a>
