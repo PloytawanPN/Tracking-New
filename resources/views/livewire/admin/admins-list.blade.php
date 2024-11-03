@@ -35,10 +35,10 @@
                                             <td class="text-center">
 
 
-                                                <button class="btn btn-danger" id='delete_admin'>
+                                                <button class="btn btn-danger" onclick="delete_admin({{$item->id}})">
                                                     <i class='bx bx-trash'></i>
                                                 </button>
-                                                <button class="d-none" id='confirm_remove' wire:click='delete({{$item->id}})'></button>
+                                                <button class="d-none" id='confirm_remove_{{$item->id}}' wire:click='delete({{$item->id}})'></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -94,10 +94,8 @@
     </div>
 
     <script>
-         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('delete_admin').addEventListener('click', function() {
-
-                Swal.fire({
+        function delete_admin(id){
+            Swal.fire({
                     title: 'Are you sure?',
                     text: "You are about to remove this user",
                     icon: 'warning',
@@ -107,11 +105,14 @@
                     confirmButtonText: 'Yes, create it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $('#confirm_remove').click();
+                        $('#confirm_remove_'+id).click();
                     }
                 });
-            });
-        });
+        }
+
+
+
+
         window.addEventListener('AdminCreated', (event) => {
             Swal.fire({
                 title: 'Success!',
