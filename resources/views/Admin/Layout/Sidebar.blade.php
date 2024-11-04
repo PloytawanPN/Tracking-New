@@ -42,7 +42,7 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{route('sales.list')}}" class="side-nav-link">
                     <i class='bx bx-money-withdraw' ></i>
                     <span>Sales</span>
                 </a>

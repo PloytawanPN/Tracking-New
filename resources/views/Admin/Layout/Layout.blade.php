@@ -11,6 +11,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
     <link href="{{ asset('boxicons-2.1.4\css\boxicons.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/vendor/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css">
 
 
     <!-- Daterangepicker css -->
@@ -921,7 +922,7 @@
     @livewireScripts
     <!-- Vendor js -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
-
+    <script src="{{ asset('assets/vendor/select2/js/select2.min.js') }}"></script>
     <!-- Daterangepicker js -->
     <script src="{{ asset('assets/vendor/daterangepicker/moment.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>

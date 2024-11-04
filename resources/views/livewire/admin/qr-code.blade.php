@@ -206,11 +206,23 @@
                     <form id="exportForm">
                         <div class="mb-3">
                             <label for="startCode" class="form-label">Start Code</label>
-                            <input type="text" class="form-control" id="startCode" name="startCode" required>
+                            <select class="form-control select2" data-toggle="select2" id="startCode" name="startCode"> 
+                                <option value="" selected>Please Select</option>
+                                @foreach ($code_list as $item)
+                                    <option value="{{$item->pet_code}}">{{ $item->pet_code }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="endCode" class="form-label">End Code</label>
-                            <input type="text" class="form-control" id="endCode" name="endCode" required>
+
+                            <select class="form-control select2" data-toggle="select2" id="endCode" name="endCode"> 
+                                <option value="" selected>Please Select</option>
+                                @foreach ($code_list as $item)
+                                    <option value="{{$item->pet_code}}">{{ $item->pet_code }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                     </form>
                 </div>

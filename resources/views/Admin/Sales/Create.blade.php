@@ -1,13 +1,13 @@
 @extends('Admin.Layout.Layout')
 @section('title')
-    Production order detail
+    Create Sales Invoice
 @endsection
 @section('content')
-    <livewire:admin.production.view :id="$id" />
+    <livewire:admin.sales.create />
 @endsection
+
 @section('style')
 @endsection
 @section('script')
 
 @endsection
- 

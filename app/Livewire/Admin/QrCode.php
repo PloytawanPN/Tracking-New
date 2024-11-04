@@ -11,7 +11,7 @@ class QrCode extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search,$produce_s;
+    public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search,$produce_s,$code_list;
 
     public function clearFilters(){
         $this->active_s=null;
@@ -84,7 +84,7 @@ class QrCode extends Component
                 'message' => 'QR Code(s) created successfully!',
             ]);
         } catch (\Throwable $th) {
-            $this->dispatch('qrCodesFalse', [
+            $this->dispatch('qrCodesFalse', [ 
                 'message' => $th->getMessage(),
             ]);
         }
@@ -125,6 +125,7 @@ class QrCode extends Component
             $query->where('qr_data', 'like', '%' . $this->search . '%');
         }
         $datalist = $query->paginate(15);
+        $this->code_list = qr_codes::get();
         return view('livewire.admin.qr-code', [
             'datalist' => $datalist
         ]);

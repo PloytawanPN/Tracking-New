@@ -3,7 +3,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title"><a href="{{route('production.list')}}"><i class='bx bxs-left-arrow'></i></a>New production order
+                    <h4 class="header-title"><a href="{{ route('production.list') }}"><i
+                                class='bx bxs-left-arrow'></i></a>New production order
                     </h4>
                     <p class="text-muted font-14">Please fill in the details for the new production order.</p>
                     <div class="tab-content">
@@ -146,14 +147,22 @@
 
                     <div class="mb-2">
                         <label class="form-label">Start pet code</label>
-                        <input type="text" wire:model.defer="start_code" class="form-control"
-                            placeholder="AA000001">
+                        <select class="form-control" wire:model="start_code">
+                            <option value="" selected>Please Select</option>
+                            @foreach ($code_list as $item)
+                                <option value="{{ $item->pet_code }}">{{ $item->pet_code }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-2">
                         <label class="form-label">Last pet code</label>
-                        <input type="text" wire:model.defer="last_code" class="form-control"
-                            placeholder="AA000010">
+                        <select class="form-control" wire:model="last_code">
+                            <option value="" selected>Please Select</option>
+                            @foreach ($code_list as $item)
+                                <option value="{{ $item->pet_code }}">{{ $item->pet_code }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>
@@ -192,9 +201,10 @@
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
+                allowOutsideClick: false,
             }).then(() => {
                 window.location.href =
-                "{{ route('production.list') }}";
+                    "{{ route('production.list') }}";
             });
         });
 

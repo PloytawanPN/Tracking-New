@@ -14,7 +14,7 @@ class Create extends Component
 
     public $order_list = [];
 
-    public $order_name ,$order_detail,$order_channel,$ProductQuantity,$total_price,$unit_price,$shipping_cost,$order_date,$received_date;
+    public $order_name ,$order_detail,$order_channel,$ProductQuantity,$total_price,$unit_price,$shipping_cost,$order_date,$received_date,$code_list;
 
     public function create_order(){
         try {
@@ -130,6 +130,7 @@ class Create extends Component
         } else {
             $this->unit_price = round($this->total_price / $this->ProductQuantity, 2);
         }
+        $this->code_list = qr_codes::where('export_st',1)->get();
         return view('livewire.admin.production.create');
     }
 }

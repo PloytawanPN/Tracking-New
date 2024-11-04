@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductionController extends Controller
+class ProductionController extends Controller 
 {
     public function view($id) {
         return view('Admin.Production.View', ['id' => $id]);

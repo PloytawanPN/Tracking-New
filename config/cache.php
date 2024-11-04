@@ -92,21 +92,38 @@ return [
 
     ],
 
-    'Active_Status' => [
+    'Active-Status' => [
         0 => ['name'=> 'Inactive'],
         1 => ['name'=> 'Active'],
     ],
-    'Export Status' => [
+    'Export-Status' => [
         0 => ['name'=> 'Inactive'],
         1 => ['name'=> 'Active'],
     ],
-    'Sold Status' => [
+    'Sold-Status' => [
         0 => ['name'=> 'Not Sold'],
         1 => ['name'=> 'Sold'],
     ],
-    'Produce Status'=> [
+    'Produce-Status'=> [
         0 => ['name'=> 'Inactive'],
         1 => ['name'=> 'Active'],
+    ],
+    'Payment-Status' => [
+        0 => ['name'=> 'Pending Payment'],
+        1 => ['name'=> 'Paid'],
+    ],
+    'Shipping-Company' => [
+        'kerry' => ['name'=> 'Kerry Express','code'=>'kerry'],
+        'flash' => ['name'=> 'Flash Express','code'=>'flash'],
+        'nex' => ['name'=> 'Nex Logistics','code'=>'nex'],
+        'thai_post' => ['name'=> 'Thailand Post','code'=>'thai_post'],
+        'dhl' => ['name'=> 'DHL','code'=>'dhl'],
+        'ups' => ['name'=> 'UPS','code'=>'ups'],
+        'grab' => ['name'=> 'Grab Express','code'=>'grab'],
+        'lineman' => ['name'=> 'Lineman','code'=>'lineman'],
+        'scg' => ['name'=> 'SCG Logistics','code'=>'scg'],
+        'tnt' => ['name'=> 'TNT','code'=>'tnt'],
+        'rabbit' => ['name'=> 'Rabbit Line Pay','code'=>'rabbit'],
     ],
     'Status' => [
         0 => ['name'=> 'Inactive'],

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,7 +21,14 @@ Route::prefix('production')->group(function () {
     Route::get('/view/{id}', [ProductionController::class, 'view'])->name('production.view');
 });
 
-/* ---------------------------------------------------------- */
+Route::prefix('sales')->group(function () {
+    Route::get('/', [SalesController::class, 'list'])->name('sales.list');
+    Route::get('/create', [SalesController::class, 'create'])->name('sales.create');
+    Route::get('/view/{id}', [SalesController::class, 'view'])->name('sales.view');
+    Route::get('/Edit/{id}', [SalesController::class, 'edit'])->name('sales.edit');
+});
+
+/* ---------------------------------------------------------- */ 
 
 
 
