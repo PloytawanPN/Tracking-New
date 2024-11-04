@@ -12,4 +12,7 @@ class AuthController extends Controller
     public function forgotPassword(){
         return view('Admin.Auth.ForgotPassword');
     }
+    public function changePassword(){
+        return view('Admin.Auth.ChangePassword');
+    }
 }

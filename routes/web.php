@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/admin/asset-secure-area')->group(function () {
     Route::get('/', [AuthController::class, 'login'])->middleware([AdminLogincheck::class]);
     Route::get('/login', [AuthController::class, 'login'])->middleware([AdminLogincheck::class])->name('admin.login');
+
     Route::get('/ForgotPassword', [AuthController::class, 'forgotPassword'])->name('admin.forgot.password');
+    Route::get('/ChangePassword/{token}', [AuthController::class, 'changePassword'])->name('admin.change.password');
+    
     Route::get('/logout', function () {
         Auth::logout();
         return redirect()->route('admin.login');
