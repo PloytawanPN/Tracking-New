@@ -129,6 +129,12 @@ return [
         0 => ['name'=> 'Inactive'],
         1 => ['name'=> 'Active'],
     ],
+    'Payment-Method' => [
+        1 => ['name'=> 'Cash'],
+        2 => ['name'=> 'Credit Card'],
+        3 => ['name'=> 'Bank Transfer'],
+    ],
+
 
     /*
     |--------------------------------------------------------------------------

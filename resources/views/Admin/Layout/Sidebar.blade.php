@@ -52,8 +52,17 @@
 
             <li class="side-nav-item">
                 <a href="{{ route('AdminsList') }}" class="side-nav-link">
-                    <i class='bx bx-user'></i> <!-- ใช้ไอคอนผู้ใช้ -->
+                    <i class='bx bx-user'></i> 
                     <span> Admins </span>
+                </a>
+            </li>
+
+            <li class="side-nav-title">Money Management</li>
+
+            <li class="side-nav-item">
+                <a href="{{ route('ExpensesList') }}" class="side-nav-link">
+                    <i class='bx bx-money'></i>
+                    <span> Expenses </span>
                 </a>
             </li>
             {{-- <li class="side-nav-item">

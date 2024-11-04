@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\MoneyController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\SalesController;
@@ -27,6 +28,12 @@ Route::prefix('sales')->group(function () {
     Route::get('/view/{id}', [SalesController::class, 'view'])->name('sales.view');
     Route::get('/Edit/{id}', [SalesController::class, 'edit'])->name('sales.edit');
 });
+
+Route::prefix('Expenses')->group(function () {
+    Route::get('/', [MoneyController::class, 'expenses_list'])->name('ExpensesList');
+});
+
+
 
 /* ---------------------------------------------------------- */ 
 
