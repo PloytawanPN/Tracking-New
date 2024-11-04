@@ -65,6 +65,15 @@
                     <span> Expenses </span>
                 </a>
             </li>
+
+            <li class="side-nav-title">Logout</li>
+
+            <li class="side-nav-item">
+                <a href="{{ route('admin.logout') }}" class="side-nav-link">
+                    <i class='bx bx-log-out'></i>
+                    <span> Logout </span>
+                </a>
+            </li>
             {{-- <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarCrm" aria-expanded="false" aria-controls="sidebarCrm" class="side-nav-link">
                     <i class="uil uil-tachometer-fast"></i>
