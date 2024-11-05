@@ -3,13 +3,24 @@
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MoneyController;
+use App\Http\Controllers\PetsController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\SalesController;
 use App\Http\Middleware\AdminLogincheck;
 use App\Http\Middleware\AdminLoginRedirect;
+use App\Http\Middleware\langMiddleware;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware([langMiddleware::class])->group(function () {
+    Route::get('/', [PetsController::class, 'registerPet'])->name('register.pet');
+});
+
+Route::get('/language/{lang}', function ($lang) {
+    session(['locale' => $lang]);
+    App::setLocale($lang);
+    return response()->json(['status' => 'Language switched to ' . $lang]);
+})->name('change.language');
 
 
 Route::prefix('/admin/asset-secure-area')->group(function () {
@@ -18,13 +29,13 @@ Route::prefix('/admin/asset-secure-area')->group(function () {
 
     Route::get('/ForgotPassword', [AuthController::class, 'forgotPassword'])->middleware([AdminLogincheck::class])->name('admin.forgot.password');
     Route::get('/ChangePassword/{token}', [AuthController::class, 'changePassword'])->middleware([AdminLogincheck::class])->name('admin.change.password');
-    
+
     Route::get('/logout', function () {
         Auth::logout();
         return redirect()->route('admin.login');
     })->name('admin.logout');
 
-    Route::middleware([AdminLoginRedirect::class ])->group(function () {
+    Route::middleware([AdminLoginRedirect::class])->group(function () {
 
         Route::get('/QrCodeList', [QrCodeController::class, 'QrCodeList'])->name('QrCodeList');
         Route::get('/AdminsList', [AdminsController::class, 'AdminsList'])->name('AdminsList');

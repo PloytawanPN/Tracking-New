@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Thai:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+* {
+    font-family: "Noto Sans Thai", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding-top: 80px;;
+    padding-bottom: 60px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 20px;
+    background-color: #ffffff;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    transition: all ease 2s;
+}
+
+.navbar-shadow {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all ease 2s;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo h3 {
+    background: linear-gradient(to right, #051937, #004D7A, #008793, #00BF72);
+    background-clip: text;
+    color: transparent;
+}
+.navbar-logo i {
+    color: #051937;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.navbar-logo img {
+    margin-right: 5px;
+    height: 20px;
+}
+
+.navbar-switch {
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* ลด font size */
+    font-weight: 700;
+}
+
+.switch {
+    --_switch-bg-clr: #11ff3d;
+    --_switch-padding: 0.5px; /* ลด padding ของสวิตช์ */
+    --_slider-bg-clr: rgb(255, 255, 255);
+    --_slider-bg-clr-on: rgb(255, 255, 255);
+    --_slider-txt-clr: #202d59;
+    --_label-padding: 7px 13px; /* ลด padding รอบ label */
+    --_switch-easing: cubic-bezier(0.47, 1.64, 0.41, 0.8);
+    color: #202d59;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    position: relative;
+    isolation: isolate;
+}
+
+.switch input[type="checkbox"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.switch > span {
+    display: grid;
+    place-content: center;
+    transition: opacity 300ms ease-in-out 150ms;
+    padding: var(--_label-padding);
+    color: #202d59;
+    font-size: 12px; /* ลด font size ใน span */
+    letter-spacing: 0.5px;
+}
+
+/* Unchecked state: TH selected */
+.switch:has(input:not(:checked)) > span:first-of-type {
+    color: #004D7A;
+}
+
+.switch:has(input:not(:checked)) > span:last-of-type {
+    color: white;
+}
+
+/* Checked state: EN selected */
+.switch:has(input:checked) > span:first-of-type {
+    color: white;
+}
+
+.switch:has(input:checked) > span:last-of-type {
+    color: #00BF72;
+}
+
+.switch::before,
+.switch::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    transition: inset 150ms ease-in-out;
+}
+
+/* Switch slider */
+.switch::before {
+    background-color: var(--_slider-bg-clr);
+    inset: var(--_switch-padding) 50% var(--_switch-padding) var(--_switch-padding);
+    transition: inset 500ms var(--_switch-easing), background-color 500ms ease-in-out;
+    z-index: -1;
+    margin: 4px; /* ลด margin ของ slider */
+}
+
+/* Switch background color */
+.switch::after {
+    background-image: linear-gradient(to right, #004D7A, #00BF72);
+    inset: 0;
+    z-index: -2;
+}
+
+.switch:has(input:checked):hover > span:first-of-type,
+.switch:has(input:not(:checked)):hover > span:last-of-type {
+    opacity: 1;
+    transition-delay: 0ms;
+    transition-duration: 100ms;
+}
+
+/* Switch hover */
+.switch:has(input:checked):hover::before {
+    inset: var(--_switch-padding) var(--_switch-padding) var(--_switch-padding) 45%;
+}
+
+.switch:has(input:not(:checked)):hover::before {
+    inset: var(--_switch-padding) 45% var(--_switch-padding) var(--_switch-padding);
+}
+
+/* Checked - move slider to right */
+.switch:has(input:checked)::before {
+    background-color: var(--_slider-bg-clr-on);
+    inset: var(--_switch-padding) var(--_switch-padding) var(--_switch-padding) 50%;
+}
+
+.switch > input:checked ~ span:last-of-type {
+    opacity: 1;
+}
