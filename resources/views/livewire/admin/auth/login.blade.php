@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <a href="pages-recoverpw.html" class="text-muted float-end"><small>Forgot your
+                        <a href="{{route('admin.forgot.password')}}" class="text-muted float-end"><small>Forgot your
                                 password?</small></a>
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group input-group-merge">

@@ -13,6 +13,8 @@ class QrCode extends Component
     protected $paginationTheme = 'bootstrap';
     public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search,$produce_s,$code_list;
 
+    public $search_petcode,$selectedCode;
+    public $test_data;
     public function clearFilters(){
         $this->active_s=null;
         $this->export_s=null;

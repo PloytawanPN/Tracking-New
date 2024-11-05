@@ -6,7 +6,8 @@
                     <div class="d-flex justify-content-between mb-3">
                         <h5>QR Code List</h5>
                         <div>
-                            <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addQrCodeModal">
+                            <button class="btn btn-success me-2" data-bs-toggle="modal"
+                                data-bs-target="#addQrCodeModal">
                                 <i class='bx bx-plus me-1'></i>Add
                             </button>
                             <button class="btn btn-warning me-2" data-bs-toggle="modal"
@@ -45,28 +46,32 @@
                                                 @if ($item->export_st == 0)
                                                     <span class="badge badge-danger-lighten">Inactive</span>
                                                 @else
-                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->export_at)->format('d/m/Y H:i') }}</span>
+                                                    <span
+                                                        class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->export_at)->format('d/m/Y H:i') }}</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 @if ($item->produce_st == 0)
                                                     <span class="badge badge-danger-lighten">Inactive</span>
                                                 @else
-                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->produce_at)->format('d/m/Y H:i') }}</span>
+                                                    <span
+                                                        class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->produce_at)->format('d/m/Y H:i') }}</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 @if ($item->sold_st == 0)
                                                     <span class="badge badge-danger-lighten">Not Sold</span>
                                                 @else
-                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->sold_at)->format('d/m/Y H:i') }}</span>
+                                                    <span
+                                                        class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->sold_at)->format('d/m/Y H:i') }}</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 @if ($item->active_st == 0)
                                                     <span class="badge badge-danger-lighten">Inactive</span>
                                                 @else
-                                                    <span class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->active_at)->format('d/m/Y H:i') }}</span>
+                                                    <span
+                                                        class="badge badge-success-lighten">{{ \Carbon\Carbon::parse($item->active_at)->format('d/m/Y H:i') }}</span>
                                                 @endif
                                             </td>
                                             <td>{{ $item->created_at }}</td>
@@ -195,7 +200,7 @@
     </div>
     <!-- Export Modal -->
     <div class="modal fade" id="exportQrCodeModal" tabindex="-1" aria-labelledby="exportQrCodeModalLabel"
-        aria-hidden="true">
+        wire:ignore="true" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -206,20 +211,22 @@
                     <form id="exportForm">
                         <div class="mb-3">
                             <label for="startCode" class="form-label">Start Code</label>
-                            <select class="form-control select2" data-toggle="select2" id="startCode" name="startCode"> 
+                            <select class="form-control select2" data-toggle="select2" id="startCode"
+                                name="startCode">
                                 <option value="" selected>Please Select</option>
                                 @foreach ($code_list as $item)
-                                    <option value="{{$item->pet_code}}">{{ $item->pet_code }}</option>
+                                    <option value="{{ $item->pet_code }}">{{ $item->pet_code }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="endCode" class="form-label">End Code</label>
 
-                            <select class="form-control select2" data-toggle="select2" id="endCode" name="endCode"> 
+                            <select class="form-control select2" data-toggle="select2" id="endCode"
+                                name="endCode">
                                 <option value="" selected>Please Select</option>
                                 @foreach ($code_list as $item)
-                                    <option value="{{$item->pet_code}}">{{ $item->pet_code }}</option>
+                                    <option value="{{ $item->pet_code }}">{{ $item->pet_code }}</option>
                                 @endforeach
                             </select>
 
@@ -243,7 +250,7 @@
                 alert('Please enter both start and end codes.');
                 return;
             }
-            const url = `/download-qr/${start}/${end}`;
+            const url = `/admin/asset-secure-area/download-qr/${start}/${end}`;
             window.location.href = url;
         }
         document.addEventListener('DOMContentLoaded', function() {
@@ -282,6 +289,5 @@
                 confirmButtonText: 'Okay'
             });
         });
-
     </script>
 </div>
