@@ -28,6 +28,8 @@ class Navbar extends Component
             Session::put('trackingProLang','th');
             App::setLocale('th');
         }
+
+        return redirect(url()->previous());
     }
     public function render()
     {

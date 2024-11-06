@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{ asset('assets/images/TrackingPro.png') }}" type="image/png">
     <link href="{{ asset('assets/css/custom/navbar.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="{{ asset('boxicons-2.1.4\css\boxicons.min.css') }}" rel="stylesheet" type="text/css">
-    <title>Tracking Pro : @yield('title')</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <title>{{ env('APP_NAME') }} : @yield('title')</title>
     @yield('style')
     @livewireStyles
 </head>
@@ -24,7 +25,7 @@
         document.addEventListener('DOMContentLoaded', checkNavbarShadow);
         window.addEventListener('scroll', checkNavbarShadow);
         function checkNavbarShadow() {
-            const navbar = document.querySelector('.navbar'); 
+            const navbar = document.querySelector('.navbar-custome'); 
             if (window.scrollY > 0) {
                 navbar.classList.add('navbar-shadow'); 
             } else {
@@ -32,6 +33,9 @@
             }
         }
     </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireScripts
 </body>
 

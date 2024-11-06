@@ -1,7 +1,7 @@
-<nav class="navbar">
+<nav class="navbar-custome">
     <div class="navbar-logo">
-        <i class="fas fa-paw"></i>
-        <h3>Tracking Pro</h3>
+        <img src="{{asset('assets/images/paw-solid.svg')}}"> 
+        <h3>{{ env('APP_NAME') }} </h3>
     </div>
     <div class="navbar-switch">
         <label for="filter" class="switch" aria-label="Toggle Filter">
