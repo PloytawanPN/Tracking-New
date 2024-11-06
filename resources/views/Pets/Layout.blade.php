@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{ asset('assets/images/TrackingPro.png') }}" type="image/png">
     <link href="{{ asset('assets/css/custom/navbar.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/custom/registerForm.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('boxicons-2.1.4\css\boxicons.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <title>{{ env('APP_NAME') }} : @yield('title')</title>
+    <title>{{ config('app.name') }} : @yield('title')</title>
     @yield('style')
     @livewireStyles
 </head>
@@ -25,9 +26,9 @@
         document.addEventListener('DOMContentLoaded', checkNavbarShadow);
         window.addEventListener('scroll', checkNavbarShadow);
         function checkNavbarShadow() {
-            const navbar = document.querySelector('.navbar-custome'); 
+            const navbar = document.querySelector('.navbar-custome');
             if (window.scrollY > 0) {
-                navbar.classList.add('navbar-shadow'); 
+                navbar.classList.add('navbar-shadow');
             } else {
                 navbar.classList.remove('navbar-shadow');
             }

@@ -20,4 +20,5 @@ return [
     'PleaseSelect' => 'โปรดเลือก',
     'male'=>'เพศเมีย',
     'female'=>'เพศผู้',
+    'Back'=>'กลับ',
 ];

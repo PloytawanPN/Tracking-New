@@ -20,4 +20,5 @@ return [
     'PleaseSelect'=>'Please Select',
     'male'=>'Male',
     'female'=>'Female',
+    'Back'=>'Back',
 ];

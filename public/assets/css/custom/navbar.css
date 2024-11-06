@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Thai:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 * {
     font-family: "Noto Sans Thai", sans-serif !important;
+    user-select: none;
 }
 
 body {
@@ -44,7 +45,7 @@ body {
     color: #051937;
     font-size: 20px;
     margin-right: 5px;
-    margin-top: -5px;
+    margin-top: -2px;
 }
 
 .navbar-logo img {
@@ -55,8 +56,9 @@ body {
 .navbar-switch {
     display: flex;
     align-items: center;
-    font-size: 14px; /* ลด font size */
+    font-size: 14px;
     font-weight: 700;
+    user-select: none;
 }
 
 .switch {

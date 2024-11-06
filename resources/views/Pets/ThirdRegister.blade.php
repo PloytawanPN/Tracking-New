@@ -6,5 +6,5 @@
 @endsection
 @endsection
 @section('content')
-<livewire:pets.first-regster />
+<livewire:pets.third-register />
 @endsection

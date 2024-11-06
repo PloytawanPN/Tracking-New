@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ env('APP_NAME') }} : Erro Token</title>
+    <title>{{ config('app.name') }} : Erro Token</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -56,7 +56,7 @@
                         <div class="card-header text-center bg-danger text-white">
                             <h4>Token Error</h4>
                         </div>
-        
+
                         <div class="card-body p-4 text-center">
                             <h5 class="text-danger">The token has expired or the link is incorrect.</h5>
                             <p>Please submit a new request.</p>
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

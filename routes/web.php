@@ -13,7 +13,13 @@ use App\Http\Middleware\langMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([langMiddleware::class])->group(function () {
-    Route::get('/', [PetsController::class, 'registerPet'])->name('register.pet');
+    Route::prefix('/register/step')->group(function () {
+    Route::get('1', [PetsController::class, 'registerPet_1'])->name('register.pet.1');
+    Route::get('2', [PetsController::class, 'registerPet_2'])->name('register.pet.2');
+    Route::get('3', [PetsController::class, 'registerPet_3'])->name('register.pet.3');
+    Route::get('4', [PetsController::class, 'registerPet_4'])->name('register.pet.4');
+    Route::get('success', [PetsController::class, 'registerSuccess'])->name('register.pet.success');
+});
 });
 
 Route::get('/language/{lang}', function ($lang) {

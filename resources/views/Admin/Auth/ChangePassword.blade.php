@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ env('APP_NAME') }} : Chnage Password</title>
+    <title>{{ config('app.name') }} : Chnage Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -44,7 +44,7 @@
         </svg>
     </div>
 
-    <livewire:admin.auth.change-password :token="$token"/> 
+    <livewire:admin.auth.change-password :token="$token"/>
 
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
