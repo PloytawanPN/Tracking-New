@@ -1,6 +1,7 @@
-*{
+* {
     user-select: none;
 }
+
 .card-form {
     width: 100%;
     max-width: 450px;
@@ -224,6 +225,7 @@ input[type="date"] {
     padding: 8px 10px;
 }
 
+
 .gradient-btn {
     background: linear-gradient(to right, #ff7e5f, #feb47b);
     border: none;
@@ -249,8 +251,8 @@ input[type="date"] {
 @media (max-width: 768px) {
     .card-form {
         width: 100%;
-        max-width:none;
-        min-width:none;
+        max-width: none;
+        min-width: none;
         padding: 30px;
         padding-top: 30px;
         background-color: white;
@@ -291,7 +293,8 @@ input[type="date"] {
 .d-none {
     display: none;
 }
-.comgrate-p{
+
+.comgrate-p {
     font-size: 15px;
     color: #b8b8b8;
     width: 90%;
@@ -306,6 +309,7 @@ input[type="date"] {
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
 .button-class-2 button {
     font-size: 16px;
     width: 85px;
@@ -317,7 +321,8 @@ input[type="date"] {
     cursor: pointer;
     transition: all ease 0.3s;
 }
-.gray-bt{
+
+.gray-bt {
     background: rgb(209, 209, 209) !important;
 }
 
@@ -387,7 +392,8 @@ input[type="date"] {
     top: calc(var(--size) * 0.3);
     stroke-dasharray: 33;
 }
-.text-area{
+
+.text-area {
     height: 120px;
 }
 

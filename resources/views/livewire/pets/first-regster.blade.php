@@ -12,6 +12,8 @@
             <i class='bx bx-image-alt'></i>
             @if ($image)
                 <img id="preview" src="{{ $image->temporaryUrl() }}" class="preview-image ">
+            @elseif($old_image)
+                <img src="{{ asset('storage/petsProfile/' . $old_image) }}" class="preview-image ">
             @endif
         </div>
 
@@ -31,7 +33,8 @@
                 <option value='other'>{{ __('messages.other') }}</option>
             </select>
             @if ($species == 'other')
-                <input type="text" class="input-field mt-1" placeholder="{{ __('messages.SpeciesPlac') }}">
+                <input type="text" class="input-field mt-1" wire:model='other'
+                    placeholder="{{ __('messages.SpeciesPlac') }}">
             @endif
         </div>
 
@@ -48,8 +51,8 @@
             <label>{{ __('messages.Gender') }}</label>
             <select class="input-field select-field" wire:model.live='gender'>
                 <option value=''>{{ __('messages.PleaseSelect') }}</option>
-                <option value='m'>{{ __('messages.male') }}</option>
-                <option value='f'>{{ __('messages.female') }}</option>
+                <option value='male'>{{ __('messages.male') }}</option>
+                <option value='female'>{{ __('messages.female') }}</option>
             </select>
         </div>
 
@@ -94,18 +97,26 @@
         document.addEventListener("DOMContentLoaded", function() {
             var lat = 13.736717;
             var lng = 100.523186;
+
+            var lat_old = @json($lat);
+            var lng_old = @json($lng);
+
             var marker;
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    lat = position.coords.latitude;
-                    lng = position.coords.longitude;
-                    renderMap(lat, lng);
-                }, function(error) {
-                    renderMap(lat, lng);
-                });
+            if (lat_old && lng_old) {
+                renderMap(lat_old, lng_old);
             } else {
-                renderMap(lat, lng);
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        lat = position.coords.latitude;
+                        lng = position.coords.longitude;
+                        renderMap(lat, lng);
+                    }, function(error) {
+                        renderMap(lat, lng);
+                    });
+                } else {
+                    renderMap(lat, lng);
+                }
             }
 
             function renderMap(lat, lng) {
@@ -139,11 +150,11 @@
                     });
                 } else {
                     Swal.fire({
-                        title: "Please wait",
-                        text: "We are currently loading locations. Please wait a moment.",
+                        title: "{{ __('messages.error') }}",
+                        text: "{{ __('messages.waitingMap') }}",
                         icon: "error",
                         draggable: false,
-                        confirmButtonText: 'Okay',
+                        confirmButtonText: "{{ __('messages.okay') }}",
                         customClass: {
                             confirmButton: 'gradient-btn',
                             icon: 'custom-icon'
@@ -157,5 +168,20 @@
         function setupImagePreview(inputId) {
             document.getElementById(inputId).click();
         }
+    </script>
+    <script>
+        window.addEventListener('stepFalse', (event) => {
+            Swal.fire({
+                title: "{{ __('messages.error') }}",
+                text: event.detail[0].message,
+                icon: "error",
+                draggable: false,
+                confirmButtonText: "{{ __('messages.okay') }}",
+                customClass: {
+                    confirmButton: 'gradient-btn',
+                    icon: 'custom-icon'
+                }
+            });
+        });
     </script>
 </div>

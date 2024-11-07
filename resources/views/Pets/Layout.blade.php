@@ -25,6 +25,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', checkNavbarShadow);
         window.addEventListener('scroll', checkNavbarShadow);
+
         function checkNavbarShadow() {
             const navbar = document.querySelector('.navbar-custome');
             if (window.scrollY > 0) {
@@ -32,6 +33,11 @@
             } else {
                 navbar.classList.remove('navbar-shadow');
             }
+        }
+    </script>
+    <script>
+        function setupImagePreview(inputId) {
+            document.getElementById(inputId).click();
         }
     </script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
