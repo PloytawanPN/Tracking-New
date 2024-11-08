@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Pets;
 
+use App\Models\Owner;
 use Crypt;
+use Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Session;
@@ -15,17 +17,18 @@ class SecordRegister extends Component
 
     public $old_image;
 
-    public $email, $password, $fullname, $nickname, $phoneNumber, $address;
+    public $email, $password, $fullname, $nickname, $phoneNumber, $address, $code,$confirm_password;
 
     public function mount()
     {
         $checkCode = Session::get('pet-code');
-        if(!$checkCode){
+        if (!$checkCode) {
             return redirect()->route('error_code');
         }
+        $this->code = Crypt::decryptString(Session::get('pet-code'));
 
         $step1 = Session::get('RegisterPet_1');
-        if (!$step1||$step1['status'] == false) {
+        if (!$step1 || $step1['status'] == false) {
             return redirect()->route('register.pet.1');
         }
 
@@ -70,13 +73,14 @@ class SecordRegister extends Component
 
             if ($this->HAccount) {
                 $validate_rule = [
-                    'email' => 'required|email',//Login
+                    'email' => 'required|email|exists:owners,email',
                     'password' => 'required',
                 ];
             } else {
                 $validate_rule = [
-                    'email' => 'required|email',//เช็คซ้ำใน database ด้วย
+                    'email' => 'required|email|unique:owners,email',
                     'password' => 'required|string|min:8|regex:/[a-zA-Z]/|regex:/[0-9]/',
+                    'confirm_password' => 'required|same:password',
                     'fullname' => 'required|string',
                     'nickname' => 'required|string',
                     'phoneNumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:10',
@@ -89,9 +93,15 @@ class SecordRegister extends Component
                 'image_owner.required' => __('messages.owner_image.required'),
                 'email.required' => __('messages.user_email.required'),
                 'email.email' => __('messages.user_email.email'),
+                'email.unique' => __('messages.email.unique'),
+                'email.exists' => __('messages.email_not_found'),
                 'password.required' => __('messages.user_password.required'),
                 'password.min' => __('messages.password.min'),
                 'password.regex' => __('messages.password.latter'),
+
+                'confirm_password.required' => __('messages.confirm_password.required'),
+                'confirm_password.same' => __('messages.confirm_password.same'),
+
                 'fullname.required' => __('messages.user_fullname.required'),
                 'fullname.string' => __('messages.user_fullname.string'),
                 'nickname.required' => __('messages.user_nickname.required'),
@@ -105,26 +115,53 @@ class SecordRegister extends Component
             if (!$this->image_owner && $this->old_image) {
                 $fileName = $this->old_image;
             } else {
-                $code = Crypt::decryptString(Session::get('pet-code'));
-                $fileName = $code.'_'.time() . '_' . Str::random(20) . '.png';
-                $path = $this->image_owner->storeAs('ownerProfile', $fileName, 'public');
+                $code = Crypt::decrypt(Session::get('pet-code'));
+                $fileName = $code . '_' . time() . '_' . Str::random(20) . '.png';
+                $path = $this->image_owner->storeAs('ownProfile/' . $code, $fileName, 'public');
             }
-            Session::put(
-                'RegisterPet_2',
-                [
-                    'own_image' => $fileName,
-                    'own_email' => $this->email,
-                    'own_password' => $this->password,
-                    'own_check' => $this->HAccount,
-                    'own_fullname' => $this->fullname,
-                    'own_nickname' => $this->nickname,
-                    'own_phone' => $this->phoneNumber,
-                    'own_address' => $this->address,
-                    'status' => true,
-                ]
-            );
 
-            return redirect()->route('register.pet.3');
+            if ($this->HAccount) {
+                $owner = Owner::where('email', $this->email)->first();
+                if ($owner && Hash::check($this->password, $owner->password)) {
+                    return redirect()->route('register.pet.3');
+                } else {
+                    $this->dispatch('stepFalse', [
+                        'message' => __('messages.password_incorrect'),
+                    ]);
+                }
+                Session::put(
+                    'RegisterPet_2',
+                    [
+                        'own_image' => $fileName,
+                        'own_email' => $this->email,
+                        'own_password' => $this->password,
+                        'own_check' => $this->HAccount,
+                        'own_fullname' => $this->fullname,
+                        'own_nickname' => $this->nickname,
+                        'own_phone' => $this->phoneNumber,
+                        'own_address' => $this->address,
+                        'status' => true,
+                    ]
+                );
+            } else {
+                Session::put(
+                    'RegisterPet_2',
+                    [
+                        'own_image' => $fileName,
+                        'own_email' => $this->email,
+                        'own_password' => $this->password,
+                        'own_check' => $this->HAccount,
+                        'own_fullname' => $this->fullname,
+                        'own_nickname' => $this->nickname,
+                        'own_phone' => $this->phoneNumber,
+                        'own_address' => $this->address,
+                        'status' => true,
+                    ]
+                );
+                return redirect()->route('register.pet.3');
+            }
+
+
         } catch (\Throwable $th) {
             $this->dispatch('stepFalse', [
                 'message' => $th->getMessage(),

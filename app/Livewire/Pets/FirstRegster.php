@@ -17,7 +17,7 @@ class FirstRegster extends Component
     public $species, $name, $breed, $gender, $birthday, $color, $lat = null, $lng = null, $other;
     public $old_image;
 
-    public $image_owner, $HAccount;
+    public $image_owner, $HAccount,$code;
     protected $listeners = ['next_to_step2'];
 
     public function mount()
@@ -27,6 +27,9 @@ class FirstRegster extends Component
             return redirect()->route('error_code');
         }
 
+        $this->code = Crypt::decryptString(Session::get('pet-code'));
+
+        
         $oldData = Session::get('RegisterPet_1');
         if (Session::get('RegisterPet_1')) {
             $this->old_image = $oldData['pet_image'];
@@ -97,9 +100,10 @@ class FirstRegster extends Component
             if (!$this->image && $this->old_image) {
                 $fileName = $this->old_image;
             } else {
-                $code = Crypt::decryptString(Session::get('pet-code'));
+                
+                $code = Crypt::decrypt(Session::get('pet-code'));
                 $fileName = $code.'_'.time() . '_' . Str::random(20) . '.png';
-                $path = $this->image->storeAs('petsProfile', $fileName, 'public');
+                $path = $this->image->storeAs('petProfile/'.$code.'/', $fileName, 'public');
             }
 
             Session::put(

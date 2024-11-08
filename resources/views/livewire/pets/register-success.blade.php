@@ -8,7 +8,6 @@
 
                 <button style="width: 180px;margin: auto;" wire:click='go_login'>{{ __('messages.go_login') }}</button>
 
-
         </div>
     </div>
 </div>

@@ -5,7 +5,6 @@
     <div class="card-form" wire:ignore.self>
         <label class="header">{{ __('messages.PetInformation') }}</label>
 
-
         <input type="file" wire:model.live='image' name='image' id="imageInput" accept="image/*" required
             style="display: none;">
         <div id="preview_image" class="frame-preview" onclick="setupImagePreview('imageInput')">
@@ -13,7 +12,7 @@
             @if ($image)
                 <img id="preview" src="{{ $image->temporaryUrl() }}" class="preview-image ">
             @elseif($old_image)
-                <img src="{{ asset('storage/petsProfile/' . $old_image) }}" class="preview-image ">
+                <img src="{{ asset('storage/petProfile/'.$this->code.'/' . $old_image) }}" class="preview-image ">
             @endif
         </div>
 

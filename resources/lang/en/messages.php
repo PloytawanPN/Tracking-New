@@ -53,6 +53,7 @@ return [
     'owner_image.required' => 'Please upload an image of the owner',
     'user_email.required' => 'Please enter your email address',
     'user_email.email' => 'Please enter a valid email address',
+    'email.unique' => 'This email address has already been used. Please try using a different email address.',
     'user_password.required' => 'Please enter your password',
 
     'password.min' => 'The password must be at least 8 characters long',
@@ -94,4 +95,13 @@ return [
     'go_login' => 'Go Login',
 
     'qr_code_register' => 'Please scan to register via QR Code or contact support for assistance',
+
+    'password_incorrect' => 'Password is incorrect, please enter the correct password',
+    'email_not_found' => 'This email was not found in our database',
+
+    'code_not_found_or_registered' => 'This code is either not available or has already been registered. Please check or contact support.',
+    'password_confirmation' => 'Confirm Password',
+
+    'confirm_password.required'=> 'Please confirm your password.',
+    'confirm_password.same'=> 'Passwords do not match. Please check your passwords.',
 ];

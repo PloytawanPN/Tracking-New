@@ -19,7 +19,7 @@
                 @if ($image_owner)
                     <img id="image_owner" src="{{ $image_owner->temporaryUrl() }}" class="preview-image ">
                 @elseif($old_image)
-                    <img src="{{ asset('storage/ownerProfile/' . $old_image) }}" class="preview-image ">
+                    <img src="{{ asset('storage/ownProfile/' . $code . '/' . $old_image) }}" class="preview-image ">
                 @endif
             </div>
         @endif
@@ -30,9 +30,16 @@
         </div>
         <div class="input-group mt-1">
             <label>{{ __('messages.passwordOwner') }}</label>
-            <input type="text" class="input-field" wire:model='password'
+            <input type="password" class="input-field" wire:model='password'
                 placeholder="{{ __('messages.passwordPlac') }}">
         </div>
+        @if (!$HAccount)
+            <div class="input-group mt-1">
+                <label>{{ __('messages.password_confirmation') }}</label>
+                <input type="password" class="input-field" wire:model='confirm_password'
+                    placeholder="{{ __('messages.passwordPlac') }}">
+            </div>
+        @endif
         <div class="input-group mt-1">
             <div class="checkbox-wrapper-28">
                 <input id="tmp-28" type="checkbox" class="promoted-input-checkbox" wire:model.live='HAccount' />

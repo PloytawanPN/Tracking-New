@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
-
+ 
 class PetsController extends Controller
 {
     public function addYourPet($code)
     {
-        /* $id = 'AA000001';
-        $encryptedId = Crypt::encryptString($id);
-        dd($encryptedId); */
-        $code='eyJpdiI6InBYREwvZ05lbzZBZGd1QjdSQ1MxaFE9PSIsInZhbHVlIjoibUFMMXhadGhMVWM4MVBwNGNiREgyUT09IiwibWFjIjoiNzBhNDM4ZTg4M2ZhNzQzMjA0NTE1MWJiYTExZDAwNjg5Mjg4OGY2ZTgzZmRhMDFhZTg5MmRiMGU2ZWM5Yzc4ZSIsInRhZyI6IiJ9';
-        
-        Session::put('pet-code',$code);
-        //เช็ค pet code ใน database ถ้าไม่มีให้ไปหน้า error
+        try{
+            $decryptedCode = Crypt::decrypt($code);
 
-        /* $decryptedId = Crypt::decryptString($code);
-        dd($decryptedId); */
+            $pet = Pet::where('pet_code', $decryptedCode)->get();
 
-        return redirect()->route('register.pet.1');
+            if (count($pet) > 0) {
+                return view('Pets.InvalidCode');
+            } else {
+                Session::put('pet-code', $code);
+                return redirect()->route('register.pet.1');
+            }
+        } catch (\Throwable $th) {
+            return view('Pets.InvalidCode');
+        }
+
+
     }
 
-    public function error_code(){
+    public function error_code()
+    {
         return view('Pets.ErrorCode');
     }
     public function registerPet_1()

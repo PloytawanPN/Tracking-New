@@ -21,12 +21,12 @@ Route::middleware([langMiddleware::class])->group(function () {
         Route::get('4', [PetsController::class, 'registerPet_4'])->name('register.pet.4');
         Route::get('success', [PetsController::class, 'registerSuccess'])->name('register.pet.success');
     });
+    Route::get('/addYourPet/{code}', [PetsController::class, 'addYourPet'])->name('addYourPet');
+    Route::get('/erroCode', [PetsController::class, 'error_code'])->name('error_code');
+
+    Route::get('/login', [AuthUserController::class, 'login'])->name('login.user');
 });
-Route::get('/addYourPet/{code}', [PetsController::class, 'addYourPet'])->name('addYourPet');
-Route::get('/erroCode', [PetsController::class, 'error_code'])->name('error_code');
 
-
-Route::get('/login', [AuthUserController::class, 'login'])->name('login.user');
 
 
 Route::get('/language/{lang}', function ($lang) {
