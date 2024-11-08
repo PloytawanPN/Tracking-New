@@ -104,4 +104,6 @@ return [
 
     'confirm_password.required'=> 'Please confirm your password.',
     'confirm_password.same'=> 'Passwords do not match. Please check your passwords.',
+
+    'Submit'=>'Submit',
 ];

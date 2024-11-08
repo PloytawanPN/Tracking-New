@@ -17,7 +17,7 @@ class SecordRegister extends Component
 
     public $old_image;
 
-    public $email, $password, $fullname, $nickname, $phoneNumber, $address, $code,$confirm_password;
+    public $email, $password, $fullname, $nickname, $phoneNumber, $address, $code, $confirm_password;
 
     public function mount()
     {
@@ -25,7 +25,7 @@ class SecordRegister extends Component
         if (!$checkCode) {
             return redirect()->route('error_code');
         }
-        $this->code = Crypt::decryptString(Session::get('pet-code'));
+        $this->code = Crypt::decrypt(Session::get('pet-code'));
 
         $step1 = Session::get('RegisterPet_1');
         if (!$step1 || $step1['status'] == false) {
@@ -60,23 +60,22 @@ class SecordRegister extends Component
     public function next_to_step3()
     {
         try {
-            if ($this->image_owner == null && $this->old_image == null) {
-                $this->validate(
-                    [
-                        'image_owner' => 'required',
-                    ],
-                    [
-                        'image_owner.required' => __('messages.owner_image.required'),
-                    ]
-                );
-            }
-
             if ($this->HAccount) {
                 $validate_rule = [
                     'email' => 'required|email|exists:owners,email',
                     'password' => 'required',
                 ];
             } else {
+                if ($this->image_owner == null && $this->old_image == null) {
+                    $this->validate(
+                        [
+                            'image_owner' => 'required',
+                        ],
+                        [
+                            'image_owner.required' => __('messages.owner_image.required'),
+                        ]
+                    );
+                }
                 $validate_rule = [
                     'email' => 'required|email|unique:owners,email',
                     'password' => 'required|string|min:8|regex:/[a-zA-Z]/|regex:/[0-9]/',
@@ -115,34 +114,38 @@ class SecordRegister extends Component
             if (!$this->image_owner && $this->old_image) {
                 $fileName = $this->old_image;
             } else {
-                $code = Crypt::decrypt(Session::get('pet-code'));
-                $fileName = $code . '_' . time() . '_' . Str::random(20) . '.png';
-                $path = $this->image_owner->storeAs('ownProfile/' . $code, $fileName, 'public');
+                if (!$this->HAccount) {
+                    $code = Crypt::decrypt(Session::get('pet-code'));
+                    $fileName = $code . '_' . time() . '_' . Str::random(20) . '.png';
+                    $path = $this->image_owner->storeAs('ownProfile/' . $code, $fileName, 'public');
+                } else {
+                    $fileName = $this->old_image;
+                }
             }
 
             if ($this->HAccount) {
                 $owner = Owner::where('email', $this->email)->first();
                 if ($owner && Hash::check($this->password, $owner->password)) {
+                    Session::put(
+                        'RegisterPet_2',
+                        [
+                            'own_image' => $fileName,
+                            'own_email' => $this->email,
+                            'own_password' => $this->password,
+                            'own_check' => $this->HAccount,
+                            'own_fullname' => $this->fullname,
+                            'own_nickname' => $this->nickname,
+                            'own_phone' => $this->phoneNumber,
+                            'own_address' => $this->address,
+                            'status' => true,
+                        ]
+                    );
                     return redirect()->route('register.pet.3');
                 } else {
                     $this->dispatch('stepFalse', [
                         'message' => __('messages.password_incorrect'),
                     ]);
                 }
-                Session::put(
-                    'RegisterPet_2',
-                    [
-                        'own_image' => $fileName,
-                        'own_email' => $this->email,
-                        'own_password' => $this->password,
-                        'own_check' => $this->HAccount,
-                        'own_fullname' => $this->fullname,
-                        'own_nickname' => $this->nickname,
-                        'own_phone' => $this->phoneNumber,
-                        'own_address' => $this->address,
-                        'status' => true,
-                    ]
-                );
             } else {
                 Session::put(
                     'RegisterPet_2',
@@ -158,8 +161,8 @@ class SecordRegister extends Component
                         'status' => true,
                     ]
                 );
-                return redirect()->route('register.pet.3');
             }
+            return redirect()->route('register.pet.3');
 
 
         } catch (\Throwable $th) {

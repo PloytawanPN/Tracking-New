@@ -21,7 +21,7 @@
 .header {
     font-size: 27px;
     font-weight: 700;
-    background: linear-gradient(45deg, #051937, #004D7A, #008793, #00BF72, #ABEB12);
+    background: linear-gradient(45deg, #051937, #004D7A, #008793, #00BF72, #00BF72);
     background-clip: text;
     color: transparent;
 }

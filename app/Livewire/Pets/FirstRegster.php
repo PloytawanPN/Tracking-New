@@ -27,7 +27,7 @@ class FirstRegster extends Component
             return redirect()->route('error_code');
         }
 
-        $this->code = Crypt::decryptString(Session::get('pet-code'));
+        $this->code = Crypt::decrypt(Session::get('pet-code'));
 
         
         $oldData = Session::get('RegisterPet_1');

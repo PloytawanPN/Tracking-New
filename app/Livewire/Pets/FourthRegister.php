@@ -68,7 +68,7 @@ class FourthRegister extends Component
     {
         try {
 
-            $code = Crypt::decryptString(Session::get('pet-code'));
+            $code = Crypt::decrypt(Session::get('pet-code'));
             $step1 = Session::get('RegisterPet_1');
             $step2 = Session::get('RegisterPet_2');
             $step3 = Session::get('RegisterPet_3');

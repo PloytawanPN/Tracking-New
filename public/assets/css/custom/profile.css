@@ -1,0 +1,115 @@
+.card-pet-profile {
+    background-color: rgb(255, 255, 255);
+    min-height: 100px;
+    min-width: 100px;
+    width: 850px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: rgba(88, 88, 88, 0.35) 0px 5px 15px;
+    padding: 22px;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-profile {
+    width: 50%;
+    background-color: rgb(231, 238, 245);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.right-contain {
+    padding: 0 22px;
+    width: 50%;
+}
+
+.image-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.show-field label {
+    font-size: 15px;
+}
+
+
+.show-field a {
+    color: white;
+    font-size: 16px;
+    background-image: linear-gradient(45deg, #1b3353, #004D7A, #008793, #00BF72, #ABEB12);
+    border-radius: 5px;
+    padding: 6px 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: ease all 0.5;
+}
+
+.show-field .contact a{
+    color: black;
+    background-image: none;
+    margin-left: -10px;
+    border: none;
+    text-decoration: none;
+}
+
+.show-field a:hover {
+    transform: scale(1.5);
+}
+
+.show-field a i {
+    margin-right: 7px;
+}
+
+.show-field .detail {
+    width: 100%;
+    outline: 1px solid rgb(209, 209, 209);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    color: rgb(43, 43, 43);
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+
+.white-space {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media (max-width: 920px) {
+    .card-pet-profile {
+        width: 100vw;
+        margin-top: 0;
+        border-radius: none;
+        flex-direction: column;
+        box-shadow: none;
+        padding: 0;
+
+    }
+
+    .image-profile {
+        width: calc(100% - 80px);
+        aspect-ratio: 2/1;
+        background-color: rgb(231, 238, 245);
+        border-radius: 5px;
+        overflow: hidden;
+        margin: auto;
+    }
+
+    .right-contain {
+        padding: 20px 0 80px 0;
+        width: calc(100% - 100px);
+        margin-left: 40px;
+    }
+}
+
+@media (max-width: 450px) {
+    .image-profile {
+        width: calc(100% - 80px);
+        aspect-ratio: 1 / 1;
+        height: auto;
+    }
+}

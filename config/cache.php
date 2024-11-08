@@ -136,9 +136,9 @@ return [
     ],
 
     'Email-Detail' => [
-        'email' => 'trackingpro060@gmail.com',
+        'email' => 'galyxiepet@gmail.com',
         'password' => 'gR8$z2K!pLx#V7wY',
-        'app-password' => 'wsca ynkt rocs appe',
+        'app-password' => 'owxpobvzqhjaimqt',
     ],
 
 

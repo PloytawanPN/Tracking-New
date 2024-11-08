@@ -1,4 +1,4 @@
-@extends('Pets.Layout')
+@extends('Pets.Layout.Layout')
 @section('style')
 
 @section('title')

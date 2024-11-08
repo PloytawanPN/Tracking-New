@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthUserController;
 use App\Http\Controllers\MoneyController;
+use App\Http\Controllers\PetProfileController;
 use App\Http\Controllers\PetsController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\QrCodeController;
@@ -22,9 +23,16 @@ Route::middleware([langMiddleware::class])->group(function () {
         Route::get('success', [PetsController::class, 'registerSuccess'])->name('register.pet.success');
     });
     Route::get('/addYourPet/{code}', [PetsController::class, 'addYourPet'])->name('addYourPet');
+    Route::get('/Galyxie/{code}', [PetsController::class, 'Galyxie'])->name('Galyxie');
     Route::get('/erroCode', [PetsController::class, 'error_code'])->name('error_code');
 
+    Route::get('/profile/{code}', [PetProfileController::class, 'profile'])->name('pet.profile');
+    Route::get('/owner/{code}', [PetProfileController::class, 'owner'])->name('owner.profile');
+
+
+
     Route::get('/login', [AuthUserController::class, 'login'])->name('login.user');
+
 });
 
 

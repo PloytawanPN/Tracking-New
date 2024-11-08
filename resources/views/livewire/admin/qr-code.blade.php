@@ -26,7 +26,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Pet ID</th>
-                                        <th>QrCode Data</th>
                                         <th class="text-center">Export Status</th>
                                         <th class="text-center">Produce Status</th>
                                         <th class="text-center">Sold Status</th>
@@ -41,7 +40,6 @@
                                             <td>{{ ($datalist->currentPage() - 1) * $datalist->perPage() + $key + 1 }}
                                             </td>
                                             <td>{{ $item->pet_code }}</td>
-                                            <td>{{ $item->qr_data }}</td>
                                             <td class="text-center">
                                                 @if ($item->export_st == 0)
                                                     <span class="badge badge-danger-lighten">Inactive</span>

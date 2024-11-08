@@ -19,7 +19,7 @@
 
         <div class="button-class-2">
             <button class="gray-bt" wire:click='back_step'>{{ __('messages.Back') }}</button>
-            <button style="width: 100px" wire:click='submit'>Submit</button>
+            <button style="width: 100px" wire:click='submit'>{{ __('messages.Submit') }}</button>
             <button style="width: 100px" id='confirm_bt' wire:click='confirm' class="d-none"></button>
             
         </div>

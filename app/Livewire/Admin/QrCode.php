@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\qr_codes;
 use Livewire\Component;
+use Illuminate\Support\Facades\Crypt;
 use Livewire\WithPagination;
 
 
@@ -29,7 +30,7 @@ class QrCode extends Component
     {
         try {
             $this->validate([
-                'numberOfQRCodes' => 'required|integer|min:1',
+                'numberOfQRCodes' => 'required|integer|min:1', 
             ]);
 
 
@@ -69,10 +70,12 @@ class QrCode extends Component
                     $qrCodes[] = $qrCode;
                 }
             }
+            
             foreach ($qrCodes as $key => $value) {
+                $url = route('Galyxie', ['code' => $value]);
                 $qrCode = qr_codes::create([
                     'pet_code' => $value,
-                    'qr_data' => $value,
+                    'qr_data' => $url,
                     'active_st' => 0,
                     'export_st' => 0,
                     'sold_st' => 0,

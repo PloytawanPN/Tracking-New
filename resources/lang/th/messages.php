@@ -103,4 +103,6 @@ return [
 
     'confirm_password.required'=> 'โปรดยืนยันรหัสผ่าน',
     'confirm_password.same'=> 'รหัสผ่านไม่ตรงกันกรุณาตรวจสอบรหัสผ่านของคุณ',
+
+    'Submit'=>'บันทึก',
 ];

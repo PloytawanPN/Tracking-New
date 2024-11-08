@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Session;
 
 class Navbar extends Component
 {
-    public $lang;
+    public $lang,$status;
 
-    public function mount()
+    public function mount($status=null)
     {
+        $this->status = $status;
         $currentLocale = Session::get('trackingProLang');
         if ($currentLocale == 'en') {
             $this->lang = true;
