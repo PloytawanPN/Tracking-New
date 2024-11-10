@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('address_show_st')->default(1);
             $table->string('owner_image')->nullable();
             $table->integer('owner_image_show_st')->default(1);
+            $table->rememberToken();
             $table->timestamps();
         });
     }

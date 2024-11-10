@@ -9,9 +9,12 @@ use App\Http\Controllers\PetsController;
 use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\UserAccountController;
 use App\Http\Middleware\AdminLogincheck;
 use App\Http\Middleware\AdminLoginRedirect;
 use App\Http\Middleware\langMiddleware;
+use App\Http\Middleware\OwnerDashboardMiddleware;
+use App\Http\Middleware\OwnerLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([langMiddleware::class])->group(function () {
@@ -26,13 +29,28 @@ Route::middleware([langMiddleware::class])->group(function () {
     Route::get('/Galyxie/{code}', [PetsController::class, 'Galyxie'])->name('Galyxie');
     Route::get('/erroCode', [PetsController::class, 'error_code'])->name('error_code');
 
-    Route::get('/profile/{code}', [PetProfileController::class, 'profile'])->name('pet.profile');
-    Route::get('/owner/{code}', [PetProfileController::class, 'owner'])->name('owner.profile');
+    Route::prefix('/profile')->group(function () {
+        Route::get('/pet/{code}', [PetProfileController::class, 'profile'])->name('pet.profile');
+        Route::get('/owner/{code}', [PetProfileController::class, 'owner'])->name('owner.profile');
+        Route::get('/healthInfo/{code}', [PetProfileController::class, 'healthInfo'])->name('pet.healthInfo');
+    });
 
 
 
-    Route::get('/login', [AuthUserController::class, 'login'])->name('login.user');
 
+    Route::get('/login', [AuthUserController::class, 'login'])->name('login.user')->middleware(OwnerLoginMiddleware::class);
+    Route::get('/forgotPassword', [AuthUserController::class, 'forgotPassword'])->name('forgotPassword.user');
+    Route::get('/changePassword/{token}', [AuthUserController::class, 'changePassword'])->name('changePassword.user');
+
+    Route::get('/tokenError', [AuthUserController::class, 'tokenError'])->name('tokenError.user');
+    Route::get('/sendSuccess', [AuthUserController::class, 'sendSuccess'])->name('sendSuccess.user');
+    Route::get('/changeSuccess', [AuthUserController::class, 'changeSuccess'])->name('changeSuccess.user');
+    Route::get('/404', [AuthUserController::class, 'notFound'])->name('notFound.user');
+
+    Route::middleware([OwnerDashboardMiddleware::class])->group(function () {
+        Route::get('/portal', [UserAccountController::class, 'portal'])->name('portal.user');
+        Route::get('/profile', [UserAccountController::class, 'profile'])->name('profile.user');
+    });
 });
 
 

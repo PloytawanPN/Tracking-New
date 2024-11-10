@@ -15,10 +15,26 @@
                 </div>
             </div>
         @endif
+        @if ($status == 2)
+            <div class="dropdown">
+                <button class="dropbtn" id='openbt'><i class='bx bx-menu'></i></button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Pet Info</a>
+                    {{-- <a href="#">Health Info</a>
+                    <a href="#">Vaccinations</a>
+                    <a href="#">Health Issues</a>
+                    <a href="#">Diet/Allergies</a>
+                    <a href="#">Medical History</a>
+                    <a href="#">Weight Log</a> --}}
+                    <a href="#" wire:click='logout'>Logout</a>
+                </div>
+            </div>
+        @endif
         <label for="filter" class="switch" aria-label="Toggle Filter">
             <input type="checkbox" id="filter" wire:model.live='lang' wire:click='changelang' />
-            <span>TH</span>
             <span>EN</span>
+            <span>TH</span>
         </label>
     </div>
 

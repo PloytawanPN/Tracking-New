@@ -29,7 +29,9 @@
     height: 100%;
     object-fit: cover;
 }
-
+.show-field{
+    text-align: left;
+}
 .show-field label {
     font-size: 15px;
 }
@@ -74,6 +76,17 @@
     text-overflow: ellipsis;
 }
 
+.show-field .own_detail {
+    width: calc(100% - 20px);
+    outline: 1px solid rgb(209, 209, 209);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    color: rgb(43, 43, 43);
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+
 .white-space {
     white-space: nowrap;
     overflow: hidden;
@@ -81,7 +94,7 @@
 
 @media (max-width: 920px) {
     .card-pet-profile {
-        width: 100vw;
+        width: calc(100%);
         margin-top: 0;
         border-radius: none;
         flex-direction: column;
@@ -97,6 +110,7 @@
         border-radius: 5px;
         overflow: hidden;
         margin: auto;
+        max-height: 250px;
     }
 
     .right-contain {
@@ -113,3 +127,4 @@
         height: auto;
     }
 }
+

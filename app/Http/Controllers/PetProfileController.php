@@ -12,4 +12,8 @@ class PetProfileController extends Controller
     public function owner(){
         return view('Pets.OwnerProfile');
     }
+
+    public function healthInfo(){
+        return view('Pets.HealthInfo');
+    }
 }

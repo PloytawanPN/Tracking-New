@@ -8,26 +8,40 @@ use Illuminate\Support\Facades\Session;
 
 class Navbar extends Component
 {
-    public $lang,$status;
+    public $lang, $status;
 
-    public function mount($status=null)
+    public function mount($status = null)
     {
+
         $this->status = $status;
         $currentLocale = Session::get('trackingProLang');
-        if ($currentLocale == 'en') {
-            $this->lang = true;
-        }else {
-            $this->lang = false;
+        if ($currentLocale) {
+            if ($currentLocale == 'en') {
+                $this->lang = false;
+            } elseif ($currentLocale == 'th') {
+                $this->lang = true;
+            }
+        }else{
+            $currentLocale =App::getLocale();
+            if ($currentLocale == 'en') {
+                $this->lang = false;
+            } elseif ($currentLocale == 'th') {
+                $this->lang = true;
+            }
         }
+    }
+    public function logout(){
+        Session::forget('ownerID');
+        return redirect()->route('login.user');
     }
     public function changelang()
     {
         if ($this->lang) {
-            Session::put('trackingProLang','en');
-            App::setLocale('en');
-        } else {
-            Session::put('trackingProLang','th');
+            Session::put('trackingProLang', 'th');
             App::setLocale('th');
+        } else {
+            Session::put('trackingProLang', 'en');
+            App::setLocale('en');
         }
 
         return redirect(url()->previous());

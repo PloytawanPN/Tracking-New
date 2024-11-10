@@ -2,9 +2,9 @@
 @section('style')
 @endsection
 @section('title')
-    Login
+    Forgot Password
 @endsection
 
 @section('content')
-    <livewire:users.login />
+    <livewire:users.forgot-password />
 @endsection

@@ -102,8 +102,52 @@ return [
     'code_not_found_or_registered' => 'This code is either not available or has already been registered. Please check or contact support.',
     'password_confirmation' => 'Confirm Password',
 
-    'confirm_password.required'=> 'Please confirm your password.',
-    'confirm_password.same'=> 'Passwords do not match. Please check your passwords.',
+    'confirm_password.required' => 'Please confirm your password.',
+    'confirm_password.same' => 'Passwords do not match. Please check your passwords.',
 
-    'Submit'=>'Submit',
+    'Submit' => 'Submit',
+
+    "owner_full_name" => "Owner’s Full Name",
+    "nickname" => "Nickname",
+    "contact_number" => "Contact Number",
+    "email_address" => "Email Address",
+
+    "Age" => 'Age',
+    'home_location' => 'Home Location',
+
+    'sign_in_account' => 'Sign in Account',
+    'login_prompt' => 'Enter your email address and password to log in',
+    'enter_email' => 'Enter your email address',
+    'password' => 'Password',
+    'enter_password' => 'Enter your password',
+    'remember_me' => 'Remember me',
+    'forgot_password' => 'Forgot Password',
+    'login' => 'Login',
+
+    'enter_email_receive' => 'Enter your email to receive a password reset link.',
+    'submit' => 'Submit',
+
+    'Save' => 'Save',
+    'change_password' => 'Change Password',
+    'enter_passwords' => 'Enter your current password and your new password to update your account',
+    'new_password' => 'New Password',
+    'confirm_password' => 'Confirm Password',
+
+    'link_or_token_expired' => 'Link or Token Expired',
+    'link_or_token_expired_message' => 'The link or token you are using has expired. Please submit a new request to receive a fresh link.',
+
+    'email_sent_success' => 'Email Sent Successfully!',
+    'email_sent_message' => 'Your email has been sent successfully. Please check your email to receive the link.',
+    'password_change_success' => 'Change Password Successful!',
+    'password_change_message' => 'Your password has been changed successfully. You can now log in with your new password.',
+
+    'not_found' => '404 Not Found',
+    'not_found_message' => 'The page you are looking for could not be found. Please check the URL or contact Support.',
+    'failed' => 'Login failed. Please check your email and password.',
+
+    'please_enter_password' => 'Please enter your password.',
+    'please_enter_email' => 'Please enter your email.',
+    'invalid_email_format' => 'Your email format is invalid.',
+    "choose_your_pet" => "Choose Your Pet",
+    "pets_list_description" => "Here’s your list of cherished pets. Select a profile to view or update their details to keep them accurate."
 ];

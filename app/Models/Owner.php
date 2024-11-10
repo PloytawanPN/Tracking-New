@@ -23,7 +23,8 @@ class Owner extends Model
         'address',
         'address_show_st',
         'owner_image',
-        'owner_image_show_st'
+        'owner_image_show_st',
+        'remember_token',
     ];
 
     protected $casts = [

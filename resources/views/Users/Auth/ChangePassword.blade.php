@@ -2,9 +2,9 @@
 @section('style')
 @endsection
 @section('title')
-    Login
+    Change Password
 @endsection
 
 @section('content')
-    <livewire:users.login />
+    <livewire:users.change-password :token="$token" />
 @endsection

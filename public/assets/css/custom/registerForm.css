@@ -53,7 +53,22 @@
 
 .frame-preview:hover {
     transform: scale(1.05);
+}
 
+.frame-preview-2{
+    user-select: none;
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: rgb(235, 235, 235);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    position: relative;
+    transition: ease 0.2s all;
 }
 
 .preview-image {
@@ -250,7 +265,7 @@ input[type="date"] {
 
 @media (max-width: 768px) {
     .card-form {
-        width: 100%;
+        width: calc(100% - 60px);
         max-width: none;
         min-width: none;
         padding: 30px;
@@ -321,12 +336,28 @@ input[type="date"] {
     cursor: pointer;
     transition: all ease 0.3s;
 }
+.button-class-2 a {
+    font-size: 16px;
+    width: 85px;
+    padding: 5px 0;
+    background: linear-gradient(45deg, #004D7A, #008793, #00BF72, #ABEB12);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    text-decoration: none;
+
+}
 
 .gray-bt {
     background: rgb(209, 209, 209) !important;
 }
 
 .button-class-2 button:hover {
+    transform: scale(1.05);
+}
+.button-class-2 a:hover {
     transform: scale(1.05);
 }
 
@@ -415,4 +446,58 @@ input[type="date"] {
     100% {
         stroke-dashoffset: 0;
     }
+}
+
+.header-detail{
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgb(206, 206, 206);
+    margin-bottom: 10px;
+}
+.input-login{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 10px
+}
+.input-login label{
+    font-size: 15px;
+    color: rgb(51, 51, 51);
+}
+.input-login input{
+    border: none;
+    outline: 1px solid rgb(216, 216, 216);
+    padding: 8px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.login-footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.login-footer a{
+    font-size: 13px;
+    color: rgb(77, 77, 77);
+    text-decoration: none;
+    margin-top: 2px;
+}
+.signin-bt{
+    padding: 6px;
+    width: 120px;
+    border: none;
+    outline: none;
+    margin-top: 15px;
+    margin-left: auto;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: linear-gradient(to right,  #004D7A, #008793, #00BF72);
+    color: white;
+    transition: ease all 0.4s;
+}
+.signin-bt:hover{
+    transform: scale(1.05);
 }

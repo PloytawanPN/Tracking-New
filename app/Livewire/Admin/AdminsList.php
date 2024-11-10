@@ -38,7 +38,7 @@ class AdminsList extends Component
             $this->dispatch('AdminCreated', [
                 'message' => 'New Account created successfully!',
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Throwable $th) { 
             $this->dispatch('AdminFalse', [
                 'message' => $th->getMessage(),
             ]);

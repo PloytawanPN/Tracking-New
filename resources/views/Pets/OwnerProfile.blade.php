@@ -1,68 +1,50 @@
 @extends('Pets.Layout.LayoutProfile')
 @section('style')
     <link href="{{ asset('assets/css/custom/profile.css') }}" rel="stylesheet" type="text/css">
+@endsection
 @section('title')
-    Pet Profile
+    Owner Profile
 @endsection
-@endsection
+
 @section('content')
-<div>
-    <div class="card-pet-profile">
-        <div class="image-profile">
-            <img src="{{ asset('assets\images\profile.jpg') }}">
-        </div>
-        <div class="right-contain">
-            <label class="header">Pet Information</label>
-            <div class="show-field mt-1">
-                <label>Pet Name</label>
-                <div class="detail white-space">
-                    Snowball
-                </div>
-            </div>
-            <div class="show-field mt-1">
-                <label>Species</label>
-                <div class="detail white-space">
-                    Cat
-                </div>
-            </div>
-            <div class="show-field mt-1">
-                <label>Breed</label>
-                <div class="detail white-space">
-                    Persian Cat
-                </div>
-            </div>
-            <div class="show-field mt-1">
-                <label>Gender</label>
-                <div class="detail white-space">
-                    Female
-                </div>
-            </div>
-            <div class="show-field mt-1">
-                <label>Birthdate</label>
-                <div class="detail white-space">
-                    March 15, 2022
-                </div>
+    <div>
+        <div class="card-form" style="max-width: 350px;padding: 35px 35px 50px 35px" wire:ignore.self>
+
+
+            <label class="header">{{ __('messages.ownerInformation') }}</label>
+
+
+            <div id="preview_image_2" class="frame-preview-2">
+                <img id="image_owner" src="{{ asset('assets\images\profile.jpg') }}" class="preview-image ">
             </div>
 
             <div class="show-field mt-1">
-                <label>Age</label>
-                <div class="detail white-space">
-                    2 years 4 months
+                <label>{{ __('messages.owner_full_name') }}</label>
+                <div class="own_detail white-space">
+                    *************
                 </div>
             </div>
             <div class="show-field mt-1">
-                <label>Color/Markings</label>
-                <div class="detail">
-                    White / Cream-colored patches on the ears and tailg White / Cream-colored patches on the ears and tailg
+                <label>{{ __('messages.nickname') }}</label>
+                <div class="own_detail white-space">
+                    *************
                 </div>
             </div>
             <div class="show-field mt-1">
-                <label>Home Location</label><br>
-                <div class="mt-1">
-                    <a><i class='bx bx-current-location'></i>Home Location</a>
+                <label>{{ __('messages.contact_number') }}</label>
+                <div class="own_detail white-space">
+                    +1 234 567 8901
                 </div>
             </div>
+            <div class="show-field mt-1">
+                <label>{{ __('messages.email_address') }}</label>
+                <div class="own_detail white-space">
+                    janesmith@example.com
+                </div>
+            </div>
+
+
+
         </div>
     </div>
-</div>
 @endsection
