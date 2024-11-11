@@ -144,6 +144,7 @@
             width: 100%;
             table-layout: fixed;
             margin-top: 20px;
+            font-size: 15px;
         }
 
         .text-left {
@@ -184,7 +185,7 @@
         @media screen and (max-width: 600px) {
             table {
                 border: 0;
-
+                margin-top: 25px
             }
 
             .text-left {
@@ -208,10 +209,11 @@
             }
 
             table tr {
-                border-bottom: 3px solid #ddd;
+                
                 display: block;
                 margin-bottom: 0.625em;
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 5px;
             }
 
             table td {
