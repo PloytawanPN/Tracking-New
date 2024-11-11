@@ -148,7 +148,27 @@ return [
     'please_enter_email' => 'โปรดกรอก email ของคุณ',
     'invalid_email_format' => 'รูปแบบ email ของคุณไม่ถูกต้อง',
     "choose_your_pet" => "เลือกสัตว์เลี้ยงของคุณ",
-    "pets_list_description" => "นี่คือรายการสัตว์เลี้ยงที่คุณรัก เลือกโปรไฟล์เพื่อดูหรืออัปเดตข้อมูลให้ถูกต้อง"
+    "pets_list_description" => "นี่คือรายการสัตว์เลี้ยงที่คุณรัก เลือกโปรไฟล์เพื่อดูหรืออัปเดตข้อมูลให้ถูกต้อง",
+    'file_type_not_supported' => 'ชนิดไฟล์ไม่รองรับ โปรดใช้ไฟล์อื่น',
+    'operation_success' => 'การดำเนินการสำเร็จ!',
 
+    'user_setting' => 'ตั้งค่าผู้ใช้',
+    'pet_setting' => 'ตั้งค่าสัตว์เลี้ยง',
+    'logout' => 'ออกจากระบบ',
+
+    'profile_setting' => 'การตั้งค่าโปรไฟล์',
+    'health_information' => 'ข้อมูลสุขภาพ',
+    'vaccination_history' => 'ประวัติการฉีดวัคซีน',
+    'health_issues' => 'ปัญหาสุขภาพ',
+    'allergies_diet' => 'ประวัติการแพ้',
+    'medical_history' => 'ประวัติทางการแพทย์',
+    'weight_record' => 'บันทึกน้ำหนัก',
+    
+    'neutered_status' => 'สถานะการทำหมัน',
+    'please_select' => 'โปรดเลือก',
+    'health_conditions_allergies' => 'เงื่อนไขสุขภาพ / การแพ้',
+    'please_provide_conditions_or_allergies' => 'โปรดกรอกเงื่อนไขหรืออาการแพ้ต่างๆ',
+    'care_instructions_requirements' => 'คำแนะนำการดูแล / ความต้องการ',
+    'please_provide_special_care_instructions' => 'โปรดกรอกการดูแลพิเศษ',
 
 ];

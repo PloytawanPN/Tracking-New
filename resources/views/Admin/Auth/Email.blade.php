@@ -88,18 +88,17 @@
 
 <body>
     <div class="email-container">
-        <!-- ส่วนหัวของอีเมล -->
+
         <div class="email-header">
             <h1>Change Your Password</h1>
         </div>
 
-        <!-- เนื้อหาของอีเมล -->
+
         <div class="email-content">
             <p>Hello,</p>
             <p>We have received a request to reset your password. If you would like to change your password, please
                 click the button below:</p>
 
-            <!-- ปุ่มเปลี่ยนรหัสผ่าน -->
             <div class="button-container">
                 <a href="{{route('admin.change.password', ['token' => $token])}}" class="btn">Change Password</a>
             </div>

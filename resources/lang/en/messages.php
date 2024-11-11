@@ -149,5 +149,27 @@ return [
     'please_enter_email' => 'Please enter your email.',
     'invalid_email_format' => 'Your email format is invalid.',
     "choose_your_pet" => "Choose Your Pet",
-    "pets_list_description" => "Here’s your list of cherished pets. Select a profile to view or update their details to keep them accurate."
+    "pets_list_description" => "Here’s your list of cherished pets. Select a profile to view or update their details to keep them accurate.",
+    'file_type_not_supported' => 'The file type is not supported. Please use another file.',
+    'operation_success' => 'Operation completed successfully!',
+
+    'user_setting' => 'User Setting',
+    'pet_setting' => 'Pet Setting',
+    'logout' => 'Logout',
+
+    'profile_setting' => 'Profile Setting',
+    'health_information' => 'Health Information',
+    'vaccination_history' => 'Vaccination History',
+    'health_issues' => 'Health Issues',
+    'allergies_diet' => 'Allergies / Diet',
+    'medical_history' => 'Medical History',
+    'weight_record' => 'Weight Record',
+
+    'neutered_status' => 'Neutered Status',
+    'please_select' => 'Please Select',
+    'health_conditions_allergies' => 'Health Conditions / Allergies',
+    'please_provide_conditions_or_allergies' => 'Please provide conditions or allergies',
+    'care_instructions_requirements' => 'Care Instructions / Requirements',
+    'please_provide_special_care_instructions' => 'Please provide special care instructions',
 ];
+ 

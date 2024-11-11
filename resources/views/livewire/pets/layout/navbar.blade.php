@@ -19,15 +19,15 @@
             <div class="dropdown">
                 <button class="dropbtn" id='openbt'><i class='bx bx-menu'></i></button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Pet Info</a>
+                    <a href="{{ route('profile.user') }}">{{ __('messages.user_setting') }}</a>
+                    <a href="{{ route('portal.user') }}">{{ __('messages.pet_setting') }}</a>
+                    <a href="#" wire:click='logout'>{{ __('messages.logout') }}</a>
                     {{-- <a href="#">Health Info</a>
                     <a href="#">Vaccinations</a>
                     <a href="#">Health Issues</a>
                     <a href="#">Diet/Allergies</a>
                     <a href="#">Medical History</a>
                     <a href="#">Weight Log</a> --}}
-                    <a href="#" wire:click='logout'>Logout</a>
                 </div>
             </div>
         @endif
@@ -42,6 +42,12 @@
         document.getElementById("openbt").addEventListener("click", function(event) {
             var dropdown = document.getElementById("myDropdown");
             dropdown.classList.toggle("show");
+
+            if (dropdown.classList.contains("show")) {
+
+                var dropdown๘ๅ = document.querySelector('.settings-menu');
+                dropdown_1.style.display = 'none';
+            }
 
             event.stopPropagation();
         });
@@ -63,4 +69,48 @@
             });
         });
     </script>
+    <script>
+        window.addEventListener('False', (event) => {
+            Swal.fire({
+                title: "{{ __('messages.error') }}",
+                text: event.detail[0].message,
+                icon: "error",
+                draggable: false,
+                confirmButtonText: "{{ __('messages.okay') }}",
+                customClass: {
+                    confirmButton: 'gradient-btn',
+                    icon: 'custom-icon'
+                }
+            });
+        });
+    </script>
+
+    @if (session()->has('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    customClass: {
+                        container: 'swal2-container',
+                        popup: 'swal2-popup',
+                        title: 'swal2-title-2',
+                        icon: 'swal2-icon-2'
+                    },
+                    background: 'linear-gradient(to right,#008793, #00BF72)',
+                    willOpen: () => {
+                        const swalContainer = document.querySelector('.swal2-container');
+                        swalContainer.style.position = 'fixed';
+                        swalContainer.style.zIndex = 9999999;
+                    },
+                });
+
+            });
+        </script>
+    @endif
 </nav>

@@ -12,6 +12,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Middleware\AdminLogincheck;
 use App\Http\Middleware\AdminLoginRedirect;
+use App\Http\Middleware\CheckSelectPet;
 use App\Http\Middleware\langMiddleware;
 use App\Http\Middleware\OwnerDashboardMiddleware;
 use App\Http\Middleware\OwnerLoginMiddleware;
@@ -48,8 +49,16 @@ Route::middleware([langMiddleware::class])->group(function () {
     Route::get('/404', [AuthUserController::class, 'notFound'])->name('notFound.user');
 
     Route::middleware([OwnerDashboardMiddleware::class])->group(function () {
-        Route::get('/portal', [UserAccountController::class, 'portal'])->name('portal.user');
-        Route::get('/profile', [UserAccountController::class, 'profile'])->name('profile.user');
+        Route::prefix('/pet-setting')->group(function () {
+            Route::get('/', [UserAccountController::class, 'portal'])->name('portal.user');
+
+            Route::middleware([CheckSelectPet::class])->group(function () {
+                Route::get('/profile/{code}', [UserAccountController::class, 'petProfile'])->name('profile.petSetting');
+                Route::get('/HealthInfo/{code}', [UserAccountController::class, 'HealthInfo'])->name('HealthInfo.petSetting');
+                Route::get('/VaccinationHistort/{code}', [UserAccountController::class, 'VaccinationHistort'])->name('VaccinationHistort.petSetting');
+            });
+        });
+        Route::get('/profile-setting', [UserAccountController::class, 'profile'])->name('profile.user');
     });
 });
 

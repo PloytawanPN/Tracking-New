@@ -18,7 +18,15 @@ class SecordRegister extends Component
     public $old_image;
 
     public $email, $password, $fullname, $nickname, $phoneNumber, $address, $code, $confirm_password;
-
+    public function updatedImageOwner()
+    {
+        if (!$this->image_owner || !in_array($this->image_owner->getMimeType(), ['image/jpeg', 'image/png'])) {
+            $this->image_owner=null;
+            $this->dispatch('False', [
+                'message' => __('messages.file_type_not_supported'),
+            ]);
+        }
+    }
     public function mount()
     {
         $checkCode = Session::get('pet-code');

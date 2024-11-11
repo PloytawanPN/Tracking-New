@@ -1,18 +1,33 @@
 <div>
-    <div wire:loading.delay.longer wire:target="next_to_step2,image" style="position: absolute">
+    <div wire:loading.delay.longer wire:target="image,save" style="position: absolute">
         @include('Pets.Loader')
     </div>
     <div class="card-form" wire:ignore.self>
+        <div class="settings-dropdown">
+            <i class='bx bx-cog settings-icon'></i>
+            <div class="settings-menu">
+                <ul>
+                    @foreach (config('menu') as $menu)
+                        <li>
+                            <a href="{{ $menu['route'] != '#' ? route($menu['route'], ['code' => Session::get('pet-code')]) : '#' }}"
+                                class="menu-option">
+                                <div class="text">{{ __($menu['label']) }}</div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
         <label class="header">{{ __('messages.PetInformation') }}</label>
 
         <input type="file" wire:model.live='image' name='image' id="imageInput" accept="image/*" required
             style="display: none;">
         <div id="preview_image" class="frame-preview" onclick="setupImagePreview('imageInput')">
-            <i class='bx bx-image-alt'></i>
             @if ($image)
-                <img id="preview" src="{{ $image->temporaryUrl() }}" class="preview-image ">
-            @elseif($old_image)
-                <img src="{{ asset('storage/petProfile/'.$this->code.'/' . $old_image) }}" class="preview-image ">
+                <img id="image_owner" src="{{ $image->temporaryUrl() }}" class="preview-image ">
+            @else
+                <img id="image_owner" src="{{ asset('storage/ProfileImage/Pets/' . $petInfo->pet_image) }}"
+                    class="image-profile">
             @endif
         </div>
 
@@ -31,7 +46,7 @@
                 <option value='dog'>{{ __('messages.dog') }}</option>
                 <option value='other'>{{ __('messages.other') }}</option>
             </select>
-            @if ($species == 'other') 
+            @if ($species == 'other')
                 <input type="text" class="input-field mt-1" wire:model='other'
                     placeholder="{{ __('messages.SpeciesPlac') }}">
             @endif
@@ -73,7 +88,11 @@
                 placeholder="{{ __('messages.ColorMarkingsPlac') }}">
         </div>
 
-
+        <div class="input-group mt-1">
+            <label>{{ __('messages.EmergencyContact') }}</label>
+            <input type="text" class="input-field" wire:model='EmergencyContact'
+                placeholder="{{ __('messages.emergency_contact') }}">
+        </div>
 
         <div class="input-group mt-1">
             <label>{{ __('messages.HomeLocation') }}</label>
@@ -83,15 +102,12 @@
                 </div>
                 <div wire:ignore class="map-field" id="map"></div>
             </div>
-
-
         </div>
-        <div class="button-class">
-            <button onclick="getLatLng()">{{ __('messages.Next') }}</button>
+
+        <div class="button-class-2">
+            <button onclick="getLatLng()">{{ __('messages.Save') }}</button>
         </div>
     </div>
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var lat = 13.736717;
@@ -143,7 +159,7 @@
                 if (marker) {
                     var lat = marker.getLatLng().lat;
                     var lng = marker.getLatLng().lng;
-                    Livewire.dispatch('next_to_step2', {
+                    Livewire.dispatch('save', {
                         lat: lat,
                         lng: lng
                     });
@@ -163,23 +179,50 @@
             }
         });
     </script>
+    @if (session()->has('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    customClass: {
+                        container: 'swal2-container',
+                        popup: 'swal2-popup',
+                        title: 'swal2-title-2',
+                        icon: 'swal2-icon-2'
+                    },
+                    background: 'linear-gradient(to right,#008793, #00BF72)',
+                    willOpen: () => {
+                        const swalContainer = document.querySelector('.swal2-container');
+                        swalContainer.style.position = 'fixed';
+                        swalContainer.style.zIndex = 9999999;
+                    },
+                });
+
+            });
+        </script>
+    @endif
+
     <script>
-        function setupImagePreview(inputId) {
-            document.getElementById(inputId).click();
-        }
-    </script>
-    <script>
-        window.addEventListener('stepFalse', (event) => {
-            Swal.fire({
-                title: "{{ __('messages.error') }}",
-                text: event.detail[0].message,
-                icon: "error",
-                draggable: false,
-                confirmButtonText: "{{ __('messages.okay') }}",
-                customClass: {
-                    confirmButton: 'gradient-btn',
-                    icon: 'custom-icon'
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+
+            window.addEventListener('False', (event) => {
+                Swal.fire({
+                    title: "{{ __('messages.error') }}",
+                    text: event.detail[0].message,
+                    icon: "error",
+                    draggable: false,
+                    confirmButtonText: "{{ __('messages.okay') }}",
+                    customClass: {
+                        confirmButton: 'gradient-btn',
+                        icon: 'custom-icon'
+                    }
+                });
             });
         });
     </script>

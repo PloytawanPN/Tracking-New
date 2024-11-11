@@ -1,6 +1,6 @@
 <div>
     <div class="card-health padding">
-        <label class="header" style="font-size: 20px">Neutered Status</label>
+        <label class="header" style="font-size: 20px">Health Information</label>
         <div class="show-field mt-1">
             <label>Neutered Status</label>
             <div class="detail white-space">

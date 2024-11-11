@@ -2,62 +2,59 @@
 @section('style')
     <link href="{{ asset('assets/css/custom/profile.css') }}" rel="stylesheet" type="text/css">
     <style>
-        .button-class-2 button{
+        .button-class-2 button {
             width: 100%;
         }
-        .button-class-2 button:hover{
+
+        .button-class-2 button:hover {
             transform: scale(1.009);
+        }
+
+        .image-profile {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .swal2-title-2,
+        .swal2-content {
+            color: white !important;
+        }
+
+
+        .swal2-icon-2 {
+            color: white !important;
+            border-color: white !important;
+        }
+
+        .swal2-title-2 {
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .swal2-title-2{
+            text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+        }
+        .head-field{
+            position: relative;
+            width: calc(100% - 20px );
+        }
+        .head-field .input-field{
+            width: calc(100% - 60px);
+            padding-right:70px;
+            
+        }
+        .head-field .check{
+            position: absolute;
+            right: -15px;
+            top: 4px;
         }
     </style>
 @section('title')
-    Profile
+    Profile Setting
 @endsection
 @endsection
 @section('content')
-<div class="card-form" wire:ignore.self>
-
-
-        <label class="header">{{ __('messages.ownerInformation') }}</label>
-
-
-    <input type="file" wire:model.live='image_owner' name='image_2' id="imageInput_2" accept="image/*" required
-        class="d-none">
-
-    <div id="preview_image_2" class="frame-preview" onclick="setupImagePreview('imageInput_2')">
-        <i class='bx bx-image-alt'></i>
-        <img id="image_owner" src="" class="preview-image ">
-    </div>
-
-
-    <div class="input-group mt-1">
-        <label>{{ __('messages.emailOwner') }}</label>
-        <input type="text" class="input-field" wire:model='email' placeholder="{{ __('messages.emailPlac') }}">
-    </div>
-
-
-    <div class="input-group mt-1">
-        <label>{{ __('messages.FullName') }}</label>
-        <input type="text" class="input-field" wire:model='fullname' placeholder="{{ __('messages.namePlac') }}">
-    </div>
-    <div class="input-group mt-1">
-        <label>{{ __('messages.Nickname') }}</label>
-        <input type="text" class="input-field" wire:model='nickname' placeholder="{{ __('messages.nickPlac') }}">
-    </div>
-    <div class="input-group mt-1">
-        <label>{{ __('messages.ContactNumber') }}</label>
-        <input type="text" class="input-field" wire:model='phoneNumber'
-            placeholder="{{ __('messages.phonePlac') }}">
-    </div>
-    <div class="input-group mt-1">
-        <label>{{ __('messages.address') }}</label>
-        <input type="text" class="input-field" wire:model='address' placeholder="{{ __('messages.numberPlac') }}">
-    </div>
-
-
-
-
-    <div class="button-class-2">
-        <button wire:click='next_to_step3'>{{ __('messages.Save') }}</button>
-    </div>
-</div>
+<livewire:users.page.profile />
 @endsection

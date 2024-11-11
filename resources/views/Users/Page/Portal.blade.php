@@ -100,6 +100,7 @@
                 margin: auto;
                 width: fit-content;
                 max-width: calc(100% - 40px);
+                min-width: calc(100% - 40px);
                 margin-top: 30px;
                 display: flex;
                 flex-wrap: wrap;
@@ -108,7 +109,7 @@
             }
         }
 
-        @media screen and (max-width: 498px) {
+        @media screen and (max-width: 520px) {
             .card-contain .card-pet {
                 max-width: calc(50% - 40px);
                 min-width: 0px;
@@ -119,40 +120,12 @@
                 font-size: 12px;
             }
 
-            .card-contain {
-                justify-content: left;
-            }
         }
     </style>
 @section('title')
-    Portal Page
+    Pet Setting
 @endsection
 @endsection
 @section('content')
-<div>
-    <div class="topic-header">
-        <label class="header">{{ __('messages.choose_your_pet') }}</label>
-        <p>{{ __('messages.pets_list_description') }}</p>
-    </div>
-    <div class="card-contain">
-        <div class="card-pet">
-            <div class="image-frame">
-                <img src='{{ asset('assets/images/profile.jpg') }}'>
-            </div>
-            <div class="pet-name">Pet Name</div>
-        </div>
-        <div class="card-pet">
-            <div class="image-frame">
-                <img src='{{ asset('assets/images/profile.jpg') }}'>
-            </div>
-            <div class="pet-name">Pet Name</div>
-        </div>
-        <div class="card-pet">
-            <div class="image-frame">
-                <img src='{{ asset('assets/images/profile.jpg') }}'>
-            </div>
-            <div class="pet-name">Pet Name</div>
-        </div>
-    </div>
-</div>
+<livewire:users.page.portal />
 @endsection

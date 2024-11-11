@@ -20,6 +20,16 @@ class FirstRegster extends Component
     public $image_owner, $HAccount,$code;
     protected $listeners = ['next_to_step2'];
 
+    public function updatedImage()
+    {
+        if (!$this->image || !in_array($this->image->getMimeType(), ['image/jpeg', 'image/png'])) {
+            $this->image=null;
+            $this->dispatch('False', [
+                'message' => __('messages.file_type_not_supported'),
+            ]);
+        }
+    }
+
     public function mount()
     {
         $checkCode = Session::get('pet-code');
