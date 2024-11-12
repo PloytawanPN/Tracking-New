@@ -11,7 +11,7 @@
         <label class="header">{{ __('messages.error') }}</label>
         <p class="comgrate-p">{{ __('messages.code_not_found_or_registered') }}</p>
         <div class="button-class-2">
-            <button style="width: 180px;margin: auto;" wire:click='go_login'>{{ __('messages.go_login') }}</button>
+            <a style="width: 180px;margin: auto;" href="{{route('login.user')}}">{{ __('messages.go_login') }}</a>
         </div>
     </div>
 </div>

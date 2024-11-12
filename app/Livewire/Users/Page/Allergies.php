@@ -2,31 +2,25 @@
 
 namespace App\Livewire\Users\Page;
 
+use App\Models\Allergy;
 use App\Models\Pet;
-use App\Models\Vaccination;
-use Carbon\Carbon;
 use Crypt;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Session;
 
-class VaccineHistory extends Component
+class Allergies extends Component 
 {
- 
-
-    public $code, $pet_age, $search, $removeID;
+    public $code,$search, $removeID;
 
     protected $listeners = ['confirmRemove'];
-    public function mount($code) 
+    public function mount($code)
     {
-
         try {
             $this->code = Crypt::decrypt($code);
             $this->petInfo = Pet::where('pet_code', $this->code)->first();
             if (!$this->petInfo) {
                 return redirect()->route('notFound.user');
-            }
-            $this->pet_age = (Pet::where('pet_code', $this->code)->first())->pet_birthday;
+            } 
         } catch (\Throwable $th) {
             return redirect()->route('notFound.user');
         }
@@ -42,8 +36,8 @@ class VaccineHistory extends Component
     public function confirmRemove()
     {
         try {
-            Vaccination::where('id',$this->removeID)->delete();
-            return redirect()->route('VaccinationHistort.petSetting', ['code' => Session::get('pet-code')])->with('success', __('messages.operation_success'));
+            Allergy::where('id',$this->removeID)->delete();
+            return redirect()->route('AllergiesHistory.petSetting', ['code' => Session::get('pet-code')])->with('success', __('messages.operation_success'));
         } catch (\Throwable $th) {
             $this->dispatch('False', [
                 'message' => $th->getMessage(),
@@ -52,13 +46,12 @@ class VaccineHistory extends Component
     }
     public function render()
     {
-        $vaccineList = Vaccination::where('pet_code', $this->code)->orderBy('vaccination_date', 'asc')->get();
-
-        $query = Vaccination::where('pet_code', $this->code)->orderBy('vaccination_date', 'asc');
+        $query = Allergy::where('pet_code', $this->code)->orderBy('created_at', 'desc');
         if ($this->search) {
-            $query->where('vaccine_name', 'like', '%' . $this->search . '%');
+            $query->where('allergy_name', 'like', '%' . $this->search . '%');
         }
-        $vaccineList = $query->get();
-        return view('livewire.users.page.vaccine-history', ['vaccineList' => $vaccineList]);
+        $dataList = $query->get();
+        return view('livewire.users.page.allergies',['dataList'=>$dataList]);
     }
 }
+ 

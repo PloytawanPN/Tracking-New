@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 class PetProfileController extends Controller
 {
-    public function profile(){
-        return view('Pets.PetProfile');
+    public function profile($code){
+        return view('Pets.PetProfile',['code'=>$code]);
     }
-    public function owner(){
-        return view('Pets.OwnerProfile');
+    public function owner($code){
+        return view('Pets.OwnerProfile',['code'=>$code]);
     }
 
-    public function healthInfo(){
-        return view('Pets.HealthInfo');
+    public function healthInfo($code){
+        return view('Pets.HealthInfo',['code'=>$code]);
     }
 }

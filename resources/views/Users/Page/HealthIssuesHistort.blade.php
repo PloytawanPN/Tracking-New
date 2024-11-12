@@ -1,6 +1,6 @@
 @extends('Users.Layout.LayoutAccount')
 @section('title')
-    Vaccination History
+    Health Issues
 @endsection
 @section('style')
     <link href="{{ asset('assets/css/custom/profile.css') }}" rel="stylesheet" type="text/css">
@@ -343,7 +343,7 @@
     </style>
 @endsection
 @section('content')
-    <livewire:users.page.vaccine-history :code="$code" />
+    <livewire:users.page.health-issues :code="$code" />
 @endsection
 @section('script')
     <script>

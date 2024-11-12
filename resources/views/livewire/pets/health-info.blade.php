@@ -197,7 +197,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="card-health mt-3">
@@ -218,12 +217,6 @@
                             <span>Pet Age</span>
                             <div class="show_detail">
                                 <label>4 Year</label>
-                            </div>
-                        </div>
-                        <div class="mt-1">
-                            <span>Symptoms</span>
-                            <div class="show_detail">
-                                <label>Observed symptoms or health issues Observed symptoms or health issues</label>
                             </div>
                         </div>
                         <div class="mt-1">

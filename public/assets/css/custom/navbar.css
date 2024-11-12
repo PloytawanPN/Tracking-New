@@ -267,7 +267,7 @@ body {
 /* From Uiverse.io by Custyyyy */
 .check {
     position: relative;
-    background: linear-gradient(90deg,  #00BF72,#008793);
+    background: linear-gradient(90deg, #00BF72, #008793);
     line-height: 0;
     font-size: 25px;
     height: 25px;
@@ -287,6 +287,7 @@ body {
     box-sizing: border-box;
     cursor: pointer;
 }
+
 
 .check {
     appearance: none;
@@ -367,3 +368,4 @@ body {
     font-size: .6em;
     line-height: 0;
 }
+

@@ -3,23 +3,19 @@
 namespace App\Livewire\Users\Page;
 
 use App\Models\Pet;
-use App\Models\Vaccination;
-use Carbon\Carbon;
+use App\Models\PetDisease;
 use Crypt;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Session;
-
-class VaccineHistory extends Component
-{
  
+class HealthIssues extends Component
+{
+    public $code,$search,$pet_age, $removeID;
 
-    public $code, $pet_age, $search, $removeID;
+    protected $listeners = ['confirmRemove']; 
 
-    protected $listeners = ['confirmRemove'];
-    public function mount($code) 
+    public function mount($code)
     {
-
         try {
             $this->code = Crypt::decrypt($code);
             $this->petInfo = Pet::where('pet_code', $this->code)->first();
@@ -31,6 +27,7 @@ class VaccineHistory extends Component
             return redirect()->route('notFound.user');
         }
     }
+
     public function remove($id)
     {
         $this->removeID = $id;
@@ -42,8 +39,8 @@ class VaccineHistory extends Component
     public function confirmRemove()
     {
         try {
-            Vaccination::where('id',$this->removeID)->delete();
-            return redirect()->route('VaccinationHistort.petSetting', ['code' => Session::get('pet-code')])->with('success', __('messages.operation_success'));
+            PetDisease::where('id',$this->removeID)->delete();
+            return redirect()->route('HealthIssuesHistort.petSetting', ['code' => Session::get('pet-code')])->with('success', __('messages.operation_success'));
         } catch (\Throwable $th) {
             $this->dispatch('False', [
                 'message' => $th->getMessage(),
@@ -52,13 +49,13 @@ class VaccineHistory extends Component
     }
     public function render()
     {
-        $vaccineList = Vaccination::where('pet_code', $this->code)->orderBy('vaccination_date', 'asc')->get();
 
-        $query = Vaccination::where('pet_code', $this->code)->orderBy('vaccination_date', 'asc');
+        $query = PetDisease::where('pet_code', $this->code)->orderBy('date_diagnosed', 'asc');
         if ($this->search) {
-            $query->where('vaccine_name', 'like', '%' . $this->search . '%');
+            $query->where('disease_name', 'like', '%' . $this->search . '%');
         }
-        $vaccineList = $query->get();
-        return view('livewire.users.page.vaccine-history', ['vaccineList' => $vaccineList]);
+        $dataList = $query->get();
+
+        return view('livewire.users.page.health-issues',['dataList'=>$dataList]);
     }
 }

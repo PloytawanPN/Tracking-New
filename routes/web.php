@@ -12,6 +12,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Middleware\AdminLogincheck;
 use App\Http\Middleware\AdminLoginRedirect;
+use App\Http\Middleware\CheckPath;
 use App\Http\Middleware\CheckSelectPet;
 use App\Http\Middleware\langMiddleware;
 use App\Http\Middleware\OwnerDashboardMiddleware;
@@ -29,13 +30,13 @@ Route::middleware([langMiddleware::class])->group(function () {
     Route::get('/addYourPet/{code}', [PetsController::class, 'addYourPet'])->name('addYourPet');
     Route::get('/Galyxie/{code}', [PetsController::class, 'Galyxie'])->name('Galyxie');
     Route::get('/erroCode', [PetsController::class, 'error_code'])->name('error_code');
-
-    Route::prefix('/profile')->group(function () {
-        Route::get('/pet/{code}', [PetProfileController::class, 'profile'])->name('pet.profile');
-        Route::get('/owner/{code}', [PetProfileController::class, 'owner'])->name('owner.profile');
-        Route::get('/healthInfo/{code}', [PetProfileController::class, 'healthInfo'])->name('pet.healthInfo');
+    Route::middleware([CheckPath::class])->group(function () {
+        Route::prefix('/profile')->group(function () {
+            Route::get('/pet/{code}', [PetProfileController::class, 'profile'])->name('pet.profile');
+            Route::get('/owner/{code}', [PetProfileController::class, 'owner'])->name('owner.profile');
+            Route::get('/healthInfo/{code}', [PetProfileController::class, 'healthInfo'])->name('pet.healthInfo');
+        });
     });
-
 
 
 
@@ -55,7 +56,31 @@ Route::middleware([langMiddleware::class])->group(function () {
             Route::middleware([CheckSelectPet::class])->group(function () {
                 Route::get('/profile/{code}', [UserAccountController::class, 'petProfile'])->name('profile.petSetting');
                 Route::get('/HealthInfo/{code}', [UserAccountController::class, 'HealthInfo'])->name('HealthInfo.petSetting');
-                Route::get('/VaccinationHistort/{code}', [UserAccountController::class, 'VaccinationHistort'])->name('VaccinationHistort.petSetting');
+                Route::prefix('/VaccinationHistory')->group(function () {
+                    Route::get('/{code}', [UserAccountController::class, 'VaccinationHistort'])->name('VaccinationHistort.petSetting');
+                    Route::get('/create/{code}', [UserAccountController::class, 'VaccinationHistort_create'])->name('VaccinationHistort.create');
+                    Route::get('/edit/{code}/{id}', [UserAccountController::class, 'VaccinationHistort_edit'])->name('VaccinationHistort.edit');
+                });
+                Route::prefix('/HealthIssues')->group(function () {
+                    Route::get('/{code}', [UserAccountController::class, 'HealthIssuesHistort'])->name('HealthIssuesHistort.petSetting');
+                    Route::get('/create/{code}', [UserAccountController::class, 'HealthIssuesHistort_create'])->name('HealthIssuesHistort.create');
+                    Route::get('/edit/{code}/{id}', [UserAccountController::class, 'HealthIssuesHistort_edit'])->name('HealthIssuesHistort.edit');
+                });
+                Route::prefix('/AllergiesHistory')->group(function () {
+                    Route::get('/{code}', [UserAccountController::class, 'AllergiesHistory'])->name('AllergiesHistory.petSetting');
+                    Route::get('/create/{code}', [UserAccountController::class, 'AllergiesHistory_create'])->name('AllergiesHistory.create');
+                    Route::get('/edit/{code}/{id}', [UserAccountController::class, 'AllergiesHistory_edit'])->name('AllergiesHistory.edit');
+                });
+                Route::prefix('/MedicalHistory')->group(function () {
+                    Route::get('/{code}', [UserAccountController::class, 'MedicalHistory'])->name('MedicalHistory.petSetting');
+                    Route::get('/create/{code}', [UserAccountController::class, 'MedicalHistory_create'])->name('MedicalHistory.create');
+                    Route::get('/edit/{code}/{id}', [UserAccountController::class, 'MedicalHistory_edit'])->name('MedicalHistory.edit');
+                });
+                Route::prefix('/WeightRecord')->group(function () {
+                    Route::get('/{code}', [UserAccountController::class, 'WeightRecord'])->name('WeightRecord.petSetting');
+                    Route::get('/create/{code}', [UserAccountController::class, 'WeightRecord_create'])->name('WeightRecord.create');
+                    Route::get('/edit/{code}/{id}', [UserAccountController::class, 'WeightRecord_edit'])->name('WeightRecord.edit');
+                });
             });
         });
         Route::get('/profile-setting', [UserAccountController::class, 'profile'])->name('profile.user');

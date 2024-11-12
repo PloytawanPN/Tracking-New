@@ -2,13 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Pet;
 use Closure;
 use Illuminate\Http\Request;
-use Session;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Crypt;
 
-class CheckSelectPet
-{ 
+class CheckPath
+{
     /**
      * Handle an incoming request.
      *
@@ -16,18 +17,19 @@ class CheckSelectPet
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $code = $request->route('code');
-        $codeSession = Session::get('pet-code');
-        if($codeSession){
-            if($code==$codeSession){
+        try {
+            $code = Crypt::decrypt($request->route('code'));
+            $data = Pet::where('pet_code', $code)->get();
+            if (count($data) == 1) {
                 return $next($request);
-            }else{
-                return redirect(notFound.user)->route('portal.user');
+            } else {
+                return redirect()->route('notFound.user');
             }
-        }else{
-            return redirect()->route('portal.user');
+        } catch (\Throwable $th) {
+            return redirect()->route('notFound.user');
         }
 
-        
+
+
     }
 }

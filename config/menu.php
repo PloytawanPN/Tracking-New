@@ -13,19 +13,19 @@ return [
         'label' => 'messages.vaccination_history',
     ],
     [
-        'route' => '#',
+        'route' => 'HealthIssuesHistort.petSetting',
         'label' => 'messages.health_issues',
     ],
     [
-        'route' => '#',
+        'route' => 'AllergiesHistory.petSetting',
         'label' => 'messages.allergies_diet',
     ],
     [
-        'route' => '#',
+        'route' => 'MedicalHistory.petSetting',
         'label' => 'messages.medical_history',
     ],
     [
-        'route' => '#',
+        'route' => 'WeightRecord.petSetting',
         'label' => 'messages.weight_record',
     ],
 ];

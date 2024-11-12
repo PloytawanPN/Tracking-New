@@ -1,6 +1,6 @@
 @extends('Users.Layout.LayoutAccount')
 @section('title')
-    Vaccination History
+    Weight Record
 @endsection
 @section('style')
     <link href="{{ asset('assets/css/custom/profile.css') }}" rel="stylesheet" type="text/css">
@@ -250,6 +250,7 @@
                 flex-direction: column;
                 justify-content: space-between;
             }
+
             .search {
                 max-width: none;
                 margin-right: 0px;
@@ -343,7 +344,7 @@
     </style>
 @endsection
 @section('content')
-    <livewire:users.page.vaccine-history :code="$code" />
+    <livewire:users.page.weight-record :code="$code" />
 @endsection
 @section('script')
     <script>

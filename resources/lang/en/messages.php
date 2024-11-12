@@ -171,5 +171,64 @@ return [
     'please_provide_conditions_or_allergies' => 'Please provide conditions or allergies',
     'care_instructions_requirements' => 'Care Instructions / Requirements',
     'please_provide_special_care_instructions' => 'Please provide special care instructions',
+
+    'vaccination_history_create' => 'Vaccination History | Create',
+    'vaccine_name' => 'Vaccine Name',
+    'vaccine_name_placeholder' => 'Please enter the vaccine name',
+    'vaccination_date' => 'Vaccination Date',
+    'next_appointment' => 'Next Appointment',
+    'vaccination_date_placeholder' => 'Please enter the vaccination date',
+    'confirmation_prompt' => 'Are you sure?',
+    'confirmation_prompt_mg' => 'Please verify your information before confirming',
+
+    'years' => 'Years',
+    'months' => 'Months ',
+    'incomplete_data' => 'Incomplete data',
+    'invalid_data' => 'Invalid data',
+
+    'pet_age' => 'Pet Age',
+    'date_admin' => 'Date Admin.',
+    'next_due' => 'Next Due',
+    'action' => 'Action',
+    'not_found_data' => 'No data found',
+    'search' => 'Search',
+
+    'confirmRemove' => 'Once deleted, you will not be able to recover this data!',
+    'vaccination_history_edit' => 'Vaccination History | Edit',
+
+    'disease_name' => 'Disease Name',
+    'date_diagnosed' => 'Date Diagnosed',
+    'please_enter_disease_name' => 'Please enter the disease name',
+    'disease_name.required' => 'Please enter the disease name',
+    'disease_date.required' => 'Please enter the date diagnosed',
+
+    'Health_Issues_edit' => 'Health Issues | Edit',
+    'Health_Issues_add' => 'Health Issues | Create',
+
+    'allergy_name' => 'Allergy Name',
+    'symptoms' => 'Symptoms',
+    'create' => 'Create',
+    'edit' => 'Edit',
+
+    'allergy_name_required' => 'Please enter the allergy name',
+    'symptoms_required' => 'Please enter the allergy symptoms',
+
+
+    'treatmentDate' => 'Treatment Date',
+    'diagnosis' => 'Diagnosis',
+    'treatment_provided' => 'Treatment Provided',
+    'medications' => 'Medications',
+    'please_enter_diagnosis' => 'Please enter diagnosis',
+    'please_enter_treatment_provided' => 'Please enter treatment provided',
+    'please_enter_treatment_date' => 'Please enter treatment date',
+    'please_enter_medications' => 'Please enter medications used in treatment',
+
+    'save_weight' => 'Save Weight',
+    'weight' => 'Weight',
+    'measurement_date' => 'Date of Measurement',
+    'weight_kg' => 'Weight (Kg)',
+    'enter_weight' => 'Please enter the weight',
+    'weight_numeric' => 'Please enter the weight as a number',
+    'please_measurement_date' => 'Please enter the measurement date',
+    'kilogram' => 'Kg',
 ];
- 

@@ -85,6 +85,25 @@
         });
     </script>
 
+    <script>
+        window.addEventListener('Confirm', (event) => {
+            Swal.fire({
+                title: "{{ __('messages.confirmation_prompt') }}",
+                text: event.detail[0].message,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#fa7153",
+                cancelButtonColor: "#e4e4e4",
+                confirmButtonText: "{{ __('messages.okay') }}",
+                cancelButtonText: "{{ __('messages.cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatch(event.detail[0].method);
+                }
+            });
+        });
+    </script>
+
     @if (session()->has('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
