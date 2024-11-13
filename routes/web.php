@@ -19,6 +19,10 @@ use App\Http\Middleware\OwnerDashboardMiddleware;
 use App\Http\Middleware\OwnerLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 
+Route::fallback(function () {
+    return redirect()->route('notFound.user');
+});
+
 Route::middleware([langMiddleware::class])->group(function () {
     Route::prefix('/register/step')->group(function () {
         Route::get('1', [PetsController::class, 'registerPet_1'])->name('register.pet.1');
