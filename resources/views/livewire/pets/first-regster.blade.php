@@ -2,7 +2,6 @@
     <div wire:loading.delay.longer wire:target="next_to_step2,image" style="position: absolute">
         @include('Pets.Loader')
     </div>
-    <div style="position: fixed;bottom: 0;left: 0;">{{ $code }}</div>
     <div class="card-form" wire:ignore.self>
 
         <label class="header">{{ __('messages.PetInformation') }}</label>
@@ -20,7 +19,7 @@
 
         <div class="input-group mt-1">
             <label>{{ __('messages.petCode') }}</label>
-            <input type="text" class="input-field" wire:model='code' placeholder="{{ __('messages.PetNamePlac') }}" @disabled(true)>
+            <input type="text" class="input-field" style="color: rgb(119, 119, 119)" wire:model='code' placeholder="{{ __('messages.PetNamePlac') }}" @disabled(true)>
         </div>
 
 
