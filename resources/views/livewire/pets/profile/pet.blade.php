@@ -1,7 +1,10 @@
 <div>
     <div class="card-pet-profile">
         <div class="image-profile">
-            <img src="{{ asset('assets\images\profile.jpg') }}">
+            @if ($petInfo->missing_st)
+                <div class="message">{{ __('messages.MiisingPet') }}</div>
+            @endif
+            <img src="{{ asset('storage/ProfileImage/Pets/' . $petInfo->pet_image) }}">
         </div>
         <div class="right-contain">
             <label class="header">{{ __('messages.PetInformation') }}</label>
@@ -17,7 +20,7 @@
                     @if ($petInfo->pet_type == 'other')
                         {{ $petInfo->species_other ? $petInfo->species_other : '-' }}
                     @else
-                        {{ $petInfo->pet_type ? $petInfo->pet_type : '-' }}
+                        {{ $petInfo->pet_type ? __('messages.' . $petInfo->pet_type) : '-' }}
                     @endif
                 </div>
             </div>
@@ -30,20 +33,42 @@
             <div class="show-field mt-1">
                 <label>{{ __('messages.Gender') }}</label>
                 <div class="detail white-space">
-                    {{ $petInfo->pet_gender ? $petInfo->pet_gender : '-' }}
+                    {{ $petInfo->pet_gender ? __('messages.' . $petInfo->pet_gender) : '-' }}
                 </div>
             </div>
             <div class="show-field mt-1">
                 <label>{{ __('messages.Birthdate') }}</label>
                 <div class="detail white-space">
-                    {{ $petInfo->pet_birthday ? $petInfo->pet_birthday : '-' }}
+                    {{ $petInfo->pet_birthday ? \Carbon\Carbon::parse($petInfo->pet_birthday)->format('d/m/Y') : '-' }}
                 </div>
             </div>
 
             <div class="show-field mt-1">
                 <label>{{ __('messages.Age') }}</label>
                 <div class="detail white-space">
-                    2 years 4 months
+                    @php
+                        if ($petInfo->pet_birthday) {
+                            $startDate = \Carbon\Carbon::createFromFormat(
+                                'Y-m-d H:i:s',
+                                $petInfo->pet_birthday,
+                            )->startOfDay();
+                            $endDate = \Carbon\Carbon::now()->startOfDay();
+
+                            if ($endDate < $startDate) {
+                                echo __('messages.invalid_data');
+                            } else {
+                                $age = $startDate->diff($endDate);
+
+                                if ($age->y > 0) {
+                                    echo "{$age->y} " . __('messages.years') . " {$age->m} " . __('messages.months');
+                                } else {
+                                    echo "{$age->m} " . __('messages.months');
+                                }
+                            }
+                        } else {
+                            echo __('messages.incomplete_data');
+                        }
+                    @endphp
                 </div>
             </div>
             <div class="show-field mt-1">
@@ -71,4 +96,34 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+        });
+    </script>
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                Livewire.dispatch('savelocation', {
+                    lat: latitude,
+                    lng: longitude
+                });
+
+            }, function(error) {
+                Livewire.dispatch('savelocation', {
+                    lat: 'error',
+                    lng: 'error'
+                });
+            });
+        } else {
+            Livewire.dispatch('savelocation', {
+                lat: 'error',
+                lng: 'error'
+            });
+        }
+    </script>
 </div>

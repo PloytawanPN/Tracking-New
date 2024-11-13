@@ -231,4 +231,15 @@ return [
     'weight_numeric' => 'Please enter the weight as a number',
     'please_measurement_date' => 'Please enter the measurement date',
     'kilogram' => 'Kg',
+
+    'Disease_name' =>'Disease name',
+    'LocationLog' =>'Location Log',
+
+    'location.date_received' => 'Date Recorded',
+    'location.lat' => 'Latitude Coordinate',
+    'location.lng' => 'Longitude Coordinate',
+    'location.action_taken' => 'Action',
+    'MissingStatus'=>'Missing Status',
+
+    'MiisingPet'=>'This pet is missing!! If found, please contact us to return it',
 ];

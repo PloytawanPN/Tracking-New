@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\qr_codes;
+use App\Models\QrLocation;
 use Livewire\Component;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\WithPagination;
@@ -12,25 +13,40 @@ class QrCode extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search,$produce_s,$code_list;
+    public $numberOfQRCodes, $qrCode, $active_s, $export_s, $sold_s, $start_d, $end_d, $search, $produce_s, $code_list, $locationQR;
 
-    public $search_petcode,$selectedCode;
+    public $search_petcode, $selectedCode,$code_location;
     public $test_data;
-    public function clearFilters(){
-        $this->active_s=null;
-        $this->export_s=null;
-        $this->sold_s=null;
-        $this->start_d=null;
-        $this->end_d=null;
-        $this->search=null;
-        $this->produce_s=null;
+
+    protected $listeners = ['remove'];
+
+    public function clearFilters()
+    {
+        $this->active_s = null;
+        $this->export_s = null;
+        $this->sold_s = null;
+        $this->start_d = null;
+        $this->end_d = null;
+        $this->search = null;
+        $this->produce_s = null;
+    }
+    public function clearLocation($code)
+    {
+        $this->code_location = $code;
+        $this->dispatch('Confirm', [
+            'message' => 'QR Code(s) created successfully!',
+        ]);
+    }
+    public function remove()
+    {
+        QrLocation::where('pet_code', $this->code_location)->delete();
     }
 
     public function createQrCodes()
     {
         try {
             $this->validate([
-                'numberOfQRCodes' => 'required|integer|min:1', 
+                'numberOfQRCodes' => 'required|integer|min:1',
             ]);
 
 
@@ -70,7 +86,7 @@ class QrCode extends Component
                     $qrCodes[] = $qrCode;
                 }
             }
-            
+
             foreach ($qrCodes as $key => $value) {
                 $url = route('Galyxie', ['code' => $value]);
                 $qrCode = qr_codes::create([
@@ -79,7 +95,7 @@ class QrCode extends Component
                     'active_st' => 0,
                     'export_st' => 0,
                     'sold_st' => 0,
-                    'produce_st'=> 0,
+                    'produce_st' => 0,
                     'status' => 1,
                 ]);
             }
@@ -89,7 +105,7 @@ class QrCode extends Component
                 'message' => 'QR Code(s) created successfully!',
             ]);
         } catch (\Throwable $th) {
-            $this->dispatch('qrCodesFalse', [ 
+            $this->dispatch('qrCodesFalse', [
                 'message' => $th->getMessage(),
             ]);
         }
@@ -130,7 +146,11 @@ class QrCode extends Component
             $query->where('qr_data', 'like', '%' . $this->search . '%');
         }
         $datalist = $query->paginate(15);
+
+        $this->locationQR = QrLocation::pluck('id', 'pet_code')->toArray();
+
         $this->code_list = qr_codes::get();
+
         return view('livewire.admin.qr-code', [
             'datalist' => $datalist
         ]);

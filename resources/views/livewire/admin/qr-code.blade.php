@@ -6,8 +6,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <h5>QR Code List</h5>
                         <div>
-                            <button class="btn btn-success me-2" data-bs-toggle="modal"
-                                data-bs-target="#addQrCodeModal">
+                            <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#addQrCodeModal">
                                 <i class='bx bx-plus me-1'></i>Add
                             </button>
                             <button class="btn btn-warning me-2" data-bs-toggle="modal"
@@ -77,6 +76,11 @@
                                                 <a class="btn btn-info"
                                                     href="{{ route('download.qr', ['code' => $item->pet_code]) }}"><i
                                                         class='bx bx-qr-scan'></i></a>
+                                                @if (isset($locationQR[$item->pet_code]))
+                                                    <button class="btn btn-warning"
+                                                        wire:click='clearLocation("{{ $item->pet_code }}")'><i
+                                                            class='bx bx-current-location'></i></button>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -285,6 +289,23 @@
                 text: event.detail[0].message,
                 icon: 'error',
                 confirmButtonText: 'Okay'
+            });
+        });
+
+        window.addEventListener('Confirm', (event) => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: 'Are you confident to delete location data?',
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#fa7153",
+                cancelButtonColor: "#e4e4e4",
+                confirmButtonText: "Okay",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatch('remove');
+                }
             });
         });
     </script>

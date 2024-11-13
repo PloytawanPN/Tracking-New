@@ -28,4 +28,8 @@ return [
         'route' => 'WeightRecord.petSetting',
         'label' => 'messages.weight_record',
     ],
+    [
+        'route' => 'pet.locationLog',
+        'label' => 'messages.LocationLog',
+    ],
 ];

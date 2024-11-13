@@ -15,9 +15,9 @@ class PetProfile extends Component
     use WithFileUploads;
     public $code, $petInfo, $lat, $lng, $image;
 
-    public $name,$species,$other,$breed,$gender,$birthday,$color,$EmergencyContact;
+    public $name,$species,$other,$breed,$gender,$birthday,$color,$EmergencyContact,$missing;
 
-    protected $listeners = ['save'];
+    protected $listeners = ['save']; 
 
     public function mount($code)
     {
@@ -37,6 +37,7 @@ class PetProfile extends Component
                 $this->birthday = Carbon::parse($this->petInfo->pet_birthday)->toDateString();
                 $this->color = $this->petInfo->pet_colorMark;
                 $this->EmergencyContact = $this->petInfo->emergency_contact;
+                $this->missing= $this->petInfo->missing_st;
 
             }
         } catch (\Throwable $th) {
@@ -102,6 +103,7 @@ class PetProfile extends Component
                 'pet_lat'=>$this->lat,
                 'pet_lng'=>$this->lng,
                 'emergency_contact'=>$this->EmergencyContact,
+                'missing_st'=>$this->missing,
             ];
 
             if($this->image){

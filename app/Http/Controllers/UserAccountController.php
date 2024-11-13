@@ -63,6 +63,10 @@ class UserAccountController extends Controller
     public function WeightRecord_edit($code,$id){
         return view('Users.Page.WeightRecord_edit',['code'=>$code,'id'=>$id]);
     }
+
+    public function locationLog($code){
+        return view('Users.Page.LocationLog',['code'=>$code]);
+    }
     
 }
 

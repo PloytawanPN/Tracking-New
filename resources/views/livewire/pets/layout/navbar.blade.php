@@ -4,14 +4,15 @@
         <h3>{{ config('app.name') }}</h3>
     </div>
     <div class="navbar-switch">
+        
         @if ($status == 1)
             <div class="dropdown">
                 <button class="dropbtn" id='openbt'><i class='bx bx-menu'></i></button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Pet Information</a>
-                    <a href="#">Owner Information</a>
-                    <a href="#">Health Information</a>
-                    <a href="#">Login Account</a>
+                    <a href="{{route('pet.profile', ['code' => $this->code])}}">{{__('messages.PetInformation')}}</a>
+                    <a href="{{route('owner.profile', ['code' => $this->code])}}">{{__('messages.ownerInformation')}}</a>
+                    <a href="{{ route('pet.healthInfo', ['code' => $this->code]) }}">{{ __('messages.HealthInformation') }}</a>
+                    <a href="{{route('login.user')}}">{{__('messages.login')}}</a>
                 </div>
             </div>
         @endif

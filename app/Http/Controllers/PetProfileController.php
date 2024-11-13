@@ -12,7 +12,6 @@ class PetProfileController extends Controller
     public function owner($code){
         return view('Pets.OwnerProfile',['code'=>$code]);
     }
-
     public function healthInfo($code){
         return view('Pets.HealthInfo',['code'=>$code]);
     }

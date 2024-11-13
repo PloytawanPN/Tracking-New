@@ -24,7 +24,7 @@ class PetsController extends Controller
             $qrcode = qr_codes::where('pet_code', $decryptedCode)->get();
 
             if (count($pet) > 0) {
-                return redirect()->route('pet.profile',['code'=>$code]);
+                return redirect()->route('pet.profile', ['code' => $code]);
             } else {
                 if (count($qrcode) == 0) {
                     return view('Pets.InvalidCode');
@@ -36,8 +36,6 @@ class PetsController extends Controller
         } catch (\Throwable $th) {
             return view('Pets.InvalidCode');
         }
-
-
     }
 
     public function error_code()

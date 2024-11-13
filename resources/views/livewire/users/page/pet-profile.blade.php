@@ -88,11 +88,20 @@
                 placeholder="{{ __('messages.ColorMarkingsPlac') }}">
         </div>
 
-        <div class="input-group mt-1">
+        <div class="input-group mt-1" style="margin-bottom: 10px">
             <label>{{ __('messages.EmergencyContact') }}</label>
             <input type="text" class="input-field" wire:model='EmergencyContact'
                 placeholder="{{ __('messages.emergency_contact') }}">
         </div>
+
+        <div class="input-group mt-1" style="flex-direction: row;">
+            <label style="margin-right: 10px">{{__('messages.MissingStatus')}} : </label>
+            <div class="check">
+                <input type="checkbox" id="check_1" wire:model.live='missing'>
+                <label for="check_1"></label>
+            </div>
+        </div>
+
 
         <div class="input-group mt-1">
             <label>{{ __('messages.HomeLocation') }}</label>

@@ -233,4 +233,16 @@ return [
     'please_measurement_date' => 'โปรดกรอกวันที่บันทึกผล',
     'kilogram' => 'Kg',
 
+    'Disease_name' =>'ชื่อโรค',
+    'LocationLog' =>'บันทึกตำแหน่ง',
+
+    'location.date_received' => 'วันที่บันทึกตำแหน่ง',
+    'location.lat' => 'พิกัดละติจูด',
+    'location.lng' => 'พิกัดลองจิจูด',
+    'location.action_taken' => 'จัดการ',
+
+    'MissingStatus'=>'สถานะสูญหาย',
+
+    'MiisingPet'=>'สัตว์เลี้ยงตัวนี้อยู่ในสถานะสูญหาย หากพบโปรดติดต่อเพื่อส่งคืน !!',
+
 ];

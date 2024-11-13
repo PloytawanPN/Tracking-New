@@ -102,6 +102,7 @@ class FourthRegister extends Component
                 'pet_colorMark' => $step1['pet_color'],
                 'pet_lat' => $step1['lat'],
                 'pet_lng' => $step1['lng'],
+                'missing_st' => 0,
                 'emergency_contact' => $step4['emergency'],
             ]);
             $health = PetHealthRecord::create([

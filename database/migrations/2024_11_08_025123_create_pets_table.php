@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('pet_colorMark');
             $table->string('pet_lat');
             $table->string('pet_lng');
+            $table->integer('missing_st')->default(0);
             $table->string('emergency_contact')->nullable();
             $table->timestamps();
         });

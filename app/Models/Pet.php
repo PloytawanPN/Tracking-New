@@ -24,7 +24,12 @@ class Pet extends Model
         'pet_colorMark',
         'pet_lat',
         'pet_lng',
-        'emergency_contact'
+        'missing_st',
+        'emergency_contact',
+    ];
+
+    protected $casts = [
+        'missing_st' => 'boolean',
     ];
 
     public function owner()
