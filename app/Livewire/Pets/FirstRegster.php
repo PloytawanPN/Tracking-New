@@ -16,7 +16,7 @@ class FirstRegster extends Component
     public $image;
     public $species, $name, $breed, $gender, $birthday, $color, $lat = null, $lng = null, $other;
     public $old_image;
-
+ 
     public $image_owner, $HAccount,$code;
     protected $listeners = ['next_to_step2'];
 
@@ -33,12 +33,12 @@ class FirstRegster extends Component
     public function mount()
     {
         $checkCode = Session::get('pet-code');
+       
         if(!$checkCode){
             return redirect()->route('error_code');
         }
 
         $this->code = Crypt::decrypt(Session::get('pet-code'));
-
         
         $oldData = Session::get('RegisterPet_1');
         if (Session::get('RegisterPet_1')) {

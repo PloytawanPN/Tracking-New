@@ -2,7 +2,9 @@
     <div wire:loading.delay.longer wire:target="next_to_step2,image" style="position: absolute">
         @include('Pets.Loader')
     </div>
+    <div style="position: fixed;bottom: 0;left: 0;">{{ $code }}</div>
     <div class="card-form" wire:ignore.self>
+
         <label class="header">{{ __('messages.PetInformation') }}</label>
 
         <input type="file" wire:model.live='image' name='image' id="imageInput" accept="image/*" required
@@ -12,12 +14,17 @@
             @if ($image)
                 <img id="preview" src="{{ $image->temporaryUrl() }}" class="preview-image ">
             @elseif($old_image)
-                <img src="{{ asset('storage/petProfile/'.$this->code.'/' . $old_image) }}" class="preview-image ">
+                <img src="{{ asset('storage/petProfile/' . $this->code . '/' . $old_image) }}" class="preview-image ">
             @endif
         </div>
 
+        <div class="input-group mt-1">
+            <label>{{ __('messages.petCode') }}</label>
+            <input type="text" class="input-field" wire:model='code' placeholder="{{ __('messages.PetNamePlac') }}" @disabled(true)>
+        </div>
 
-        <div class="input-group">
+
+        <div class="input-group mt-1">
             <label>{{ __('messages.PetName') }}</label>
             <input type="text" class="input-field" wire:model='name' placeholder="{{ __('messages.PetNamePlac') }}">
         </div>
@@ -31,7 +38,7 @@
                 <option value='dog'>{{ __('messages.dog') }}</option>
                 <option value='other'>{{ __('messages.other') }}</option>
             </select>
-            @if ($species == 'other') 
+            @if ($species == 'other')
                 <input type="text" class="input-field mt-1" wire:model='other'
                     placeholder="{{ __('messages.SpeciesPlac') }}">
             @endif

@@ -193,6 +193,8 @@ return [
     'not_found_data' => 'No data found',
     'search' => 'Search',
 
+    'petCode' => 'Pet Code',
+
     'confirmRemove' => 'Once deleted, you will not be able to recover this data!',
     'vaccination_history_edit' => 'Vaccination History | Edit',
 
