@@ -107,6 +107,7 @@
 
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
+                
 
                 Livewire.dispatch('savelocation', {
                     lat: latitude,

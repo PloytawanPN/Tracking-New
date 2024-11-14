@@ -25,7 +25,7 @@
                 <div class="input-group mt-1">
                     <input type="text" class="input-field" placeholder="{{ __('messages.search') }}"
                         wire:model.live='search'></input>
-                </div> 
+                </div>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
                 @endforeach
                 @if (count($dataList) == 0)
                     <tr>
-                        <td colspan='6'>{{ __('messages.not_found_data') }}</td>
+                        <td colspan='4'>{{ __('messages.not_found_data') }}</td>
                     </tr>
                 @endif
             </tbody>

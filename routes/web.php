@@ -42,6 +42,7 @@ Route::middleware([langMiddleware::class])->group(function () {
         });
     });
 
+    Route::get('/', [AuthUserController::class, 'login'])->name('login.user')->middleware(OwnerLoginMiddleware::class);
     Route::get('/login', [AuthUserController::class, 'login'])->name('login.user')->middleware(OwnerLoginMiddleware::class);
     Route::get('/forgotPassword', [AuthUserController::class, 'forgotPassword'])->name('forgotPassword.user');
     Route::get('/changePassword/{token}', [AuthUserController::class, 'changePassword'])->name('changePassword.user');
@@ -84,7 +85,7 @@ Route::middleware([langMiddleware::class])->group(function () {
                     Route::get('/edit/{code}/{id}', [UserAccountController::class, 'WeightRecord_edit'])->name('WeightRecord.edit');
                 });
 
-                Route::get('/locationLog/{code}', [UserAccountController::class, 'locationLog'])->name('pet.locationLog');
+                /* Route::get('/locationLog/{code}', [UserAccountController::class, 'locationLog'])->name('pet.locationLog'); */
 
             });
         });

@@ -60,6 +60,6 @@ class PetsController extends Controller
     }
     public function registerSuccess()
     {
-        return view('Pets.RegisterSuccess');
+        return view('Pets.registerSuccess');
     }
 }

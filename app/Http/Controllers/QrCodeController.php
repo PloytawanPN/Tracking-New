@@ -32,13 +32,13 @@ class QrCodeController extends Controller
 
         $manager = new ImageManager(new Driver());
         $image = $manager->create(512, 512)->fill('ffffff');
-        $image->place($tempFile, 'center', 0, -25);
-        $image->text($code, 256, 465, function ($font) {
-            $font->file(public_path('\assets\fonts\Nunito-bold.ttf'));
+        $image->place($tempFile, 'center', 0, 0);
+        /* $image->text($code, 256, 465, function ($font) {
+            $font->file(public_path('assets\fonts\Nunito-bold.ttf'));
             $font->size(45);
             $font->align('center');
             $font->valign('middle');
-        });
+        }); */
 
         $filename = 'QRTRACKING_' . $code . '_' . now()->format('Ymd') . '.png';
 
@@ -73,13 +73,13 @@ class QrCodeController extends Controller
 
                 $manager = new ImageManager(new Driver());
                 $image = $manager->create(512, 512)->fill('ffffff');
-                $image->place($tempFile, 'center', 0, -25);
-                $image->text($value->pet_code, 256, 465, function ($font) {
+                $image->place($tempFile, 'center', 0, 0);
+                /* $image->text($value->pet_code, 256, 465, function ($font) {
                     $font->file(public_path('\assets\fonts\Nunito-bold.ttf'));
                     $font->size(45);
                     $font->align('center');
                     $font->valign('middle');
-                });
+                }); */
 
                 $filename = 'QRTRACKING_' . $value->pet_code . '_' . now()->format('Ymd') . '.png';
                 $tempImagePath = sys_get_temp_dir() . '/' . $filename;

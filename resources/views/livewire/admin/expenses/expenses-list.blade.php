@@ -22,7 +22,6 @@
                                         <th class="text-center">Amount</th>
                                         <th class="text-center">Payment Date</th>
                                         <th class="text-center">Payment Method</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,8 +33,7 @@
                                             <td class="text-center">{{ $item->amount }}</td>
                                             <td class="text-center">{{ \Carbon\Carbon::parse( $item->payment_date )->format('d/m/Y') }}</td>
                                             <td class="text-center">{{config('cache.Payment-Method.'.$item->payment_method.'.name')}}</td>
-                                            <td class="text-center"></td>
-                                    
+
                                             {{-- <td class="text-center">
                                                 <a href="{{ route('production.view', ['id' => Crypt::encryptString($item->order_id)]) }}" class="btn btn-info">
                                                     <i class='bx bx-show'></i>
@@ -105,11 +103,11 @@
     </div>
     <script>
         window.addEventListener('expenseCreated', (event) => {
-            const originalModal = document.getElementById('addExpenseModal'); 
+            const originalModal = document.getElementById('addExpenseModal');
             const modalInstance = bootstrap.Modal.getInstance(originalModal);
 
             if (modalInstance) {
-                modalInstance.hide(); 
+                modalInstance.hide();
             }
             Swal.fire({
                 title: 'Success!',
@@ -119,11 +117,11 @@
             });
         });
         window.addEventListener('expenseFalse', (event) => {
-            const originalModal = document.getElementById('addExpenseModal'); 
+            const originalModal = document.getElementById('addExpenseModal');
             const modalInstance = bootstrap.Modal.getInstance(originalModal);
 
             if (modalInstance) {
-                modalInstance.hide(); 
+                modalInstance.hide();
             }
             Swal.fire({
                 title: 'Error!',
