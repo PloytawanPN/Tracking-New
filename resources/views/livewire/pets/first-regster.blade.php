@@ -19,7 +19,7 @@
 
         <div class="input-group mt-1">
             <label>{{ __('messages.petCode') }}</label>
-            <input type="text" class="input-field" style="color: rgb(119, 119, 119)" wire:model='code' placeholder="{{ __('messages.PetNamePlac') }}" @disabled(true)>
+            <input type="text" class="input-field" style="color: rgb(87, 87, 87)" wire:model='code' placeholder="{{ __('messages.PetNamePlac') }}" @disabled(true)>
         </div>
 
 
