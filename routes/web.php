@@ -28,6 +28,7 @@ Route::middleware([langMiddleware::class])->group(function () {
 
 
     Route::get('/HowToRegister', [WebPageController::class, 'How_to_register'])->name('How_to_register');
+    Route::get('/Homepage', [WebPageController::class, 'Homepage'])->name('Homepage');
 
 
     Route::prefix('/register/step')->group(function () {

@@ -263,4 +263,5 @@ return [
     'step4.title' => 'Step 4: Scan the QR Code again',
     'step4.description' => 'Scan the QR code again to test and access your pet\'s profile page, where you can view all related pet information conveniently.',
 
+    'banner_1'=>'Join the Galyxie Pet family and be part of our community today!',
 ];
