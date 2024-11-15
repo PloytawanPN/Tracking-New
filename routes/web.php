@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\WebPageController;
 use App\Http\Middleware\AdminLogincheck;
 use App\Http\Middleware\AdminLoginRedirect;
 use App\Http\Middleware\CheckPath;
@@ -24,6 +25,11 @@ Route::fallback(function () {
 });
 
 Route::middleware([langMiddleware::class])->group(function () {
+
+
+    Route::get('/HowToRegister', [WebPageController::class, 'How_to_register'])->name('How_to_register');
+
+
     Route::prefix('/register/step')->group(function () {
         Route::get('1', [PetsController::class, 'registerPet_1'])->name('register.pet.1');
         Route::get('2', [PetsController::class, 'registerPet_2'])->name('register.pet.2');
