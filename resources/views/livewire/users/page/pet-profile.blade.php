@@ -31,8 +31,13 @@
             @endif
         </div>
 
-
         <div class="input-group">
+            <label>{{ __('messages.petCode') }}</label>
+            <input type="text" class="input-field" wire:model='code' disabled style="color: rgb(114, 114, 114)">
+        </div>
+
+
+        <div class="input-group mt-1" >
             <label>{{ __('messages.PetName') }}</label>
             <input type="text" class="input-field" wire:model='name' placeholder="{{ __('messages.PetNamePlac') }}">
         </div>
