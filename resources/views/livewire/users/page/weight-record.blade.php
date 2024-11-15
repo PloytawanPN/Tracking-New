@@ -41,7 +41,7 @@
             <tbody>
                 @foreach ($dataList as $item)
                     <tr>
-                        <td scope="row" data-label="{{ __('messages.diagnosis') }}" >
+                        <td scope="row" data-label="{{ __('messages.weight') }}" >
                             {{ number_format($item->weight ?? '-', 1) }} {{ __('messages.kilogram') }}
                         </td>
                         <td data-label="{{ __('messages.pet_age') }}">
@@ -75,7 +75,7 @@
                                 }
                             @endphp
                         </td>
-                        <td data-label="{{ __('messages.treatmentDate') }}">
+                        <td data-label="{{ __('messages.measurement_date') }}">
                             {{$item->measurement_date?(\Carbon\Carbon::parse($item->measurement_date)->format('d/m/Y')) : '-' }}</td>
 
                         <td data-label="{{ __('messages.action') }}" class="action">
