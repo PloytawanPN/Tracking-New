@@ -9,4 +9,8 @@ class WebPageController extends Controller
     public function How_to_register(){
         return view('WebPage.RegisterStep');
     }
+
+    public function Homepage(){
+        return view('WebPage.Homepage');
+    }
 }
