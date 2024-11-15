@@ -6,5 +6,7 @@
     Heslth Information
 @endsection
 @section('content')
-<livewire:pets.health-info :code="$code"/>
+    <div style="margin-bottom: 50px">
+        <livewire:pets.health-info :code="$code" />
+    </div>
 @endsection
