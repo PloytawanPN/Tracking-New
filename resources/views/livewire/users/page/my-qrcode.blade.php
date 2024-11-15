@@ -26,7 +26,7 @@
                 ->eye('circle')
                 ->gradient(0, 77, 122, 0, 77, 122, 'diagonal')
                 ->margin(1)
-                ->generate(route('Galyxie',['code',$code])) !!}
+                ->generate(route('Galyxie', [$code])) !!}
         </div>
 
     </div>
