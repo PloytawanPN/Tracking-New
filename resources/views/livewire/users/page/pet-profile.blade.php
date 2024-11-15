@@ -90,7 +90,7 @@
 
         <div class="input-group mt-1" style="margin-bottom: 10px">
             <label>{{ __('messages.EmergencyContact') }}</label>
-            <input type="text" class="input-field" wire:model='EmergencyContact'
+            <input type="text" class="input-field" wire:model='EmergencyContact' 
                 placeholder="{{ __('messages.emergency_contact') }}">
         </div>
 

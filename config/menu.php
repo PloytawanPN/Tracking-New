@@ -28,6 +28,10 @@ return [
         'route' => 'WeightRecord.petSetting',
         'label' => 'messages.weight_record',
     ],
+    [
+        'route' => 'MyQR.petSetting',
+        'label' => 'messages.myqrcode',
+    ],
 /*     [
         'route' => 'pet.locationLog',
         'label' => 'messages.LocationLog',

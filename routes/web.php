@@ -85,6 +85,9 @@ Route::middleware([langMiddleware::class])->group(function () {
                     Route::get('/edit/{code}/{id}', [UserAccountController::class, 'WeightRecord_edit'])->name('WeightRecord.edit');
                 });
 
+                Route::get('/MyQR/{code}', [UserAccountController::class, 'MyQR'])->name('MyQR.petSetting');
+
+
                 /* Route::get('/locationLog/{code}', [UserAccountController::class, 'locationLog'])->name('pet.locationLog'); */
 
             });

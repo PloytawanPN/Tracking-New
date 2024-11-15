@@ -67,6 +67,10 @@ class UserAccountController extends Controller
     public function locationLog($code){
         return view('Users.Page.LocationLog',['code'=>$code]);
     }
+
+    public function MyQR($code){
+        return view('Users.Page.MyQrcode',['code'=>$code]);
+    }
     
 }
 

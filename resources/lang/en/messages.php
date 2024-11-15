@@ -244,4 +244,6 @@ return [
     'MissingStatus'=>'Missing Status',
 
     'MiisingPet'=>'This pet is missing!! If found, please contact us to return it',
+
+    'myqrcode'=>'My Qr-Code',
 ];
