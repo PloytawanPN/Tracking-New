@@ -5,6 +5,8 @@ namespace App\Livewire\Pets;
 use App\Models\Owner;
 use App\Models\Pet;
 use App\Models\PetHealthRecord;
+use App\Models\qr_codes;
+use Carbon\Carbon;
 use Crypt;
 use Hash;
 use Livewire\Component;
@@ -111,6 +113,10 @@ class FourthRegister extends Component
                 'health_allergies' => $step3['Health'],
                 'care_instruction' => $step4['care'],
             ]);
+
+            $qr = qr_codes::where('pet_code',$code)->update(['active_st'=>1,'active_at'=>Carbon::now()]);
+
+
 
             $file_1 = Session::get('RegisterPet_1')['pet_image'];
             $file_2 = Session::get('RegisterPet_2')['own_image'];

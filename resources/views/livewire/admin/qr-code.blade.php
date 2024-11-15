@@ -76,11 +76,11 @@
                                                 <a class="btn btn-info"
                                                     href="{{ route('download.qr', ['code' => $item->pet_code]) }}"><i
                                                         class='bx bx-qr-scan'></i></a>
-                                                @if (isset($locationQR[$item->pet_code]))
+                                                {{-- @if (isset($locationQR[$item->pet_code]))
                                                     <button class="btn btn-warning"
                                                         wire:click='clearLocation("{{ $item->pet_code }}")'><i
                                                             class='bx bx-current-location'></i></button>
-                                                @endif
+                                                @endif --}}
                                             </td>
                                         </tr>
                                     @endforeach
