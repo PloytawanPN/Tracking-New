@@ -33,7 +33,7 @@
 
         <div class="input-group">
             <label>{{ __('messages.petCode') }}</label>
-            <input type="text" class="input-field" wire:model='code' readonly style="color: rgb(87, 87, 87)">
+            <input type="text" class="input-field" wire:model='code' readonly style="color: rgb(109, 109, 109)">
         </div>
 
 
