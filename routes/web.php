@@ -28,7 +28,7 @@ Route::middleware([langMiddleware::class])->group(function () {
 
 
     Route::get('/HowToRegister', [WebPageController::class, 'How_to_register'])->name('How_to_register');
-    Route::get('/Homepage', [WebPageController::class, 'Homepage'])->name('Homepage');
+    /* Route::get('/Homepage', [WebPageController::class, 'Homepage'])->name('Homepage'); */
 
 
     Route::prefix('/register/step')->group(function () {
@@ -66,6 +66,7 @@ Route::middleware([langMiddleware::class])->group(function () {
             Route::middleware([CheckSelectPet::class])->group(function () {
                 Route::get('/profile/{code}', [UserAccountController::class, 'petProfile'])->name('profile.petSetting');
                 Route::get('/HealthInfo/{code}', [UserAccountController::class, 'HealthInfo'])->name('HealthInfo.petSetting');
+                Route::get('/StyleSetting/{code}', [UserAccountController::class, 'StyleSetting'])->name('StyleSetting.petSetting');
                 Route::prefix('/VaccinationHistory')->group(function () {
                     Route::get('/{code}', [UserAccountController::class, 'VaccinationHistort'])->name('VaccinationHistort.petSetting');
                     Route::get('/create/{code}', [UserAccountController::class, 'VaccinationHistort_create'])->name('VaccinationHistort.create');

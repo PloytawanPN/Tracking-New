@@ -71,6 +71,10 @@ class UserAccountController extends Controller
     public function MyQR($code){
         return view('Users.Page.MyQrcode',['code'=>$code]);
     }
-    
+
+    public function StyleSetting($code){
+        return view('Users.Page.StyleSetting',['code'=>$code]);
+    }
+
 }
 

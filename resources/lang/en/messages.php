@@ -234,34 +234,46 @@ return [
     'please_measurement_date' => 'Please enter the measurement date',
     'kilogram' => 'Kg',
 
-    'Disease_name' =>'Disease name',
-    'LocationLog' =>'Location Log',
+    'Disease_name' => 'Disease name',
+    'LocationLog' => 'Location Log',
 
     'location.date_received' => 'Date Recorded',
     'location.lat' => 'Latitude Coordinate',
     'location.lng' => 'Longitude Coordinate',
     'location.action_taken' => 'Action',
-    'MissingStatus'=>'Missing Status',
+    'MissingStatus' => 'Missing Status',
 
-    'MiisingPet'=>'This pet is missing!! If found, please contact us to return it',
+    'MiisingPet' => 'This pet is missing!! If found, please contact us to return it',
 
-    'myqrcode'=>'My Qr-Code',
+    'myqrcode' => 'My Qr-Code',
 
-    
+
 
     'Registration_Process' => 'Registration Step',
-    'Registration_Process_detail'=> 'Registering your pet is an important step to confirm ownership and facilitate the care of your pet, as well as to prevent potential issues in the future.',
+    'Registration_Process_detail' => 'Registering your pet is an important step to confirm ownership and facilitate the care of your pet, as well as to prevent potential issues in the future.',
     'step1.title' => 'Step 1: Buy QR Code from the store',
     'step1.description' => 'You can purchase the pet tag from the store and wait to receive the tag engraved with Galyxie Pet QR Code.',
-    
+
     'step2.title' => 'Step 2: Register your pet',
     'step2.description' => 'Use your smartphone or a device that can scan QR codes (e.g., QR code scanner app) to scan the QR code on the pet tag. The system will take you to a website or app to register your pet, where you will need to fill in the required information.',
-    
+
     'step3.title' => 'Step 3: Log in',
     'step3.description' => 'After completing registration, you can log in through the Login page to manage your personal and pet information, update data, and access various services of Galyxie Pet.',
-    
+
     'step4.title' => 'Step 4: Scan the QR Code again',
     'step4.description' => 'Scan the QR code again to test and access your pet\'s profile page, where you can view all related pet information conveniently.',
 
-    'banner_1'=>'Join the Galyxie Pet family and be part of our community today!',
+    'banner_1' => 'Join the Galyxie Pet family and be part of our community today!',
+
+
+    'card_style' => 'Decorate Card',
+
+    'header_setting' => 'Header Setting',
+    'button_setting' => 'Button Setting',
+    'card_background' => 'Card Background',
+    'screen_background' => 'Screen Background',
+
+    'please_color'=>'Please Select Color',
+
+    'dfcolor'=>'Default',
 ];

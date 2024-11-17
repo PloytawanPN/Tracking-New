@@ -29,6 +29,10 @@ return [
         'label' => 'messages.weight_record',
     ],
     [
+        'route' => 'StyleSetting.petSetting',
+        'label' => 'messages.card_style',
+    ],
+    [
         'route' => 'MyQR.petSetting',
         'label' => 'messages.myqrcode',
     ],
