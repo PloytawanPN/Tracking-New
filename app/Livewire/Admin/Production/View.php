@@ -31,7 +31,7 @@ class View extends Component
         $this->unit_price = $this->OrderDetail->unit_price;
         $this->shipping_cost = $this->OrderDetail->shipping_cost;
         $this->order_date = \Carbon\Carbon::parse($this->OrderDetail->order_at)->format('Y-m-d');
-        $this->received_date = \Carbon\Carbon::parse($this->OrderDetail->received_at)->format('Y-m-d');
+        $this->received_date = $this->OrderDetail->received_at?\Carbon\Carbon::parse($this->OrderDetail->received_at)->format('Y-m-d'):null;
 
         $this->order_list = OrderList::where('production_order_id',$this->OrderDetail->id)->get();
 

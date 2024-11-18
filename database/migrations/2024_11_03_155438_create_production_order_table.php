@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('unit_price');
             $table->float('shipping_cost');
             $table->dateTime('order_at');
-            $table->dateTime('received_at');
+            $table->dateTime('received_at')->nullable();
             $table->timestamps();
         });
     }

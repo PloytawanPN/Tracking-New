@@ -37,7 +37,10 @@
                                             <td class="text-center">
                                                 <a href="{{ route('production.view', ['id' => Crypt::encryptString($item->order_id)]) }}" class="btn btn-info">
                                                     <i class='bx bx-show'></i>
-                                                </button>
+                                                </a>
+                                                <a href="{{ route('production.edit', ['id' => Crypt::encryptString($item->order_id)]) }}" class="btn btn-warning">
+                                                    <i class='bx bx-edit'></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

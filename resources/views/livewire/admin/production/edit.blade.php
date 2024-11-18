@@ -1,4 +1,4 @@
-<div> 
+<div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -18,44 +18,33 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <!-- Title and Add Order Button -->
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <label for="simpleinput" class="form-label">Order List</label>
-                                        <button class="btn btn-info" data-bs-toggle="modal"
-                                            data-bs-target="#addorder">Add Order</button>
-                                    </div>
 
                                     <!-- Order List Table -->
                                     <table class="table table-bordered table-centered mb-0">
                                         <thead>
                                             <tr>
-                                                <th class="text-center">#</th>
-                                                <th>Pet Code</th>
-                                                <th class="text-center">Action</th>
+                                                <th class="text-center col-1">#</th>
+                                                <th class="text-center">Pet Code</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($order_list as $key => $item)
-                                                <tr>
-                                                    <td class="text-center">
-                                                        {{ $loop->iteration }}
-                                                    </td>
-                                                    <td>{{ $item['pet_code'] }}</td>
-                                                    <td class="table-action text-center">
-                                                        <a href="#" wire:click='removeRow({{ $item['id'] }})'
-                                                            class="action-icon">
-                                                            <i class="mdi mdi-delete"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            @if (count($order_list) == 0)
-                                                <tr>
-                                                    <td class="text-center" colspan="3">
-                                                        Not Found Data
-                                                    </td>
-                                                </tr>
-                                            @endif
+                                            <tbody>
+                                                @foreach ($order_list as $key => $item)
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            {{ $loop->iteration }}
+                                                        </td>
+                                                        <td class="text-center">{{ $item['pet_code'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                @if (count($order_list) == 0)
+                                                    <tr>
+                                                        <td class="text-center" colspan="3">
+                                                            Not Found Data
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            </tbody>
                                         </tbody>
                                     </table>
                                 </div>
@@ -124,56 +113,16 @@
                                             wire:model='received_date'>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" wire:click='create_order'>New
-                                    Order</button>
+                                <button type="button" class="btn btn-primary" wire:click='update_order'>Update</button>
 
                             </div>
-                        </div> <!-- end preview-->
-                    </div> <!-- end tab-content-->
-                </div> <!-- end card-body -->
-            </div> <!-- end card -->
-        </div><!-- end col -->
-    </div><!-- end row -->
-
-    <div class="modal fade" id="addorder" tabindex="-1" aria-labelledby="addorder" aria-hidden="true"
-        wire:ignore.self>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addorder">Select pet code</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="mb-2">
-                        <label class="form-label">Start pet code</label>
-                        <select class="form-control" wire:model="start_code">
-                            <option value="" selected>Please Select</option>
-                            @foreach ($code_list as $item)
-                                <option value="{{ $item->pet_code }}">{{ $item->pet_code }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-2">
-                        <label class="form-label">Last pet code</label>
-                        <select class="form-control" wire:model="last_code">
-                            <option value="" selected>Please Select</option>
-                            @foreach ($code_list as $item)
-                                <option value="{{ $item->pet_code }}">{{ $item->pet_code }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveQrCode"
-                        wire:click='addOrder'>Create</button>
-                </div>
-            </div>
+                        </div>
+                    </div> 
+                </div> 
+            </div> 
         </div>
     </div>
+
 
     <script>
         window.addEventListener('orderCreated', (event) => {

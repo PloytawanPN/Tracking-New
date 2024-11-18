@@ -9,6 +9,9 @@ class ProductionController extends Controller
     public function view($id) {
         return view('Admin.Production.View', ['id' => $id]);
     }
+    public function edit($id) {
+        return view('Admin.Production.Edit', ['id' => $id]);
+    }
     public function list(){
         return view(view: 'Admin.Production.List');
     }

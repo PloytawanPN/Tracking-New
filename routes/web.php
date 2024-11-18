@@ -134,6 +134,7 @@ Route::prefix('/admin/asset-secure-area')->group(function () {
             Route::get('/', [ProductionController::class, 'list'])->name('production.list');
             Route::get('/create', [ProductionController::class, 'create'])->name('production.create');
             Route::get('/view/{id}', [ProductionController::class, 'view'])->name('production.view');
+            Route::get('/edit/{id}', [ProductionController::class, 'edit'])->name('production.edit');
         });
 
         Route::prefix('sales')->group(function () {

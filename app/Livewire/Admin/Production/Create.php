@@ -28,7 +28,6 @@ class Create extends Component
                 'unit_price' => 'required|numeric',
                 'shipping_cost' => 'required|numeric',
                 'order_date' => 'required',
-                'received_date' => 'required',
             ]);
 
             $productionOrder = ProductionOrder::create([
@@ -41,7 +40,7 @@ class Create extends Component
                 'unit_price' => $this->unit_price,
                 'shipping_cost' => $this->shipping_cost,
                 'order_at' => $this->order_date,
-                'received_at' => $this->received_date,
+                'received_at' => $this->received_date!=''?$this->received_date:null,
             ]);
 
 
