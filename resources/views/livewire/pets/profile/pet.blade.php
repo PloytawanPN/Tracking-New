@@ -37,7 +37,7 @@
                 top: 0;
                 left: 0;
                 z-index: -10;
-                background-image: url('/storage/style/bg/{{ $style->bg_image }}');
+                background-image: url('{{ asset("storage/style/bg/$style->bg_image") }}');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -45,7 +45,7 @@
             }
             @media (max-width: 930px) {
                 .background-img {
-                    background-image: url('/storage/style/card/{{ $style->card_image }}');
+                    background-image: url('{{ asset("storage/style/card/$style->card_image") }}');
                     filter: brightness(1);
                 }
             }
@@ -54,7 +54,7 @@
     @if ($style && $style->card_image)
         <style>
             .card-pet-profile {
-                background-image: url('/storage/style/card/{{ $style->card_image }}');
+                background-image: url('{{ asset("storage/style/card/$style->card_image") }}');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
