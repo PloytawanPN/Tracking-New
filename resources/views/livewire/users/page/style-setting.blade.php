@@ -183,7 +183,7 @@
                 class="form-control d-none">
             <div class="preview-sp" id='image_card'>
                 <i class='bx bx-image'></i>
-                @if ($image_card)
+                @if ($image_card!=null&&$image_card!='empty')
                     <img src="{{ $image_card->temporaryUrl() }}" alt="Preview">
                 @elseif($card_style)
                     @if ($card_style->card_image && !$clear_c)
@@ -201,7 +201,7 @@
                 class="form-control d-none">
             <div class="preview-sp" id='image_BG'>
                 <i class='bx bx-image'></i>
-                @if ($image_bg)
+                @if ($image_bg!=null&&$image_bg!='empty')
                     <img src="{{ $image_bg->temporaryUrl() }}" alt="Preview">
                 @elseif($card_style)
                     @if ($card_style->bg_image && !$clear_bg)

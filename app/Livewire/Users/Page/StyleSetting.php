@@ -69,12 +69,12 @@ class StyleSetting extends Component
 
     public function clearcard()
     {
-        $this->image_card = null;
+        $this->image_card = 'empty';
         $this->clear_c =true;
     }
     public function clearbg()
     {
-        $this->image_bg = null;
+        $this->image_bg = 'empty';
         $this->clear_bg =true;
     }
     public function updatedSelectedColor($value)
@@ -100,7 +100,7 @@ class StyleSetting extends Component
         } elseif ($this->button == 'orage') {
             $b_color = 'linear-gradient(45deg, #FF1178, #F89928)';
         } else {
-            $b_color = $this->color_header;
+            $b_color = $this->color_button;
         }
 
         if ($this->image_card) {
@@ -140,14 +140,19 @@ class StyleSetting extends Component
                 'bg_image' => $this->image_bg ? $fileNameBg : null,
             ]);
         } else {
-            $cardStyle = CardStyle::where('pet_code', $this->code)->update([
+            $data = [
                 'header_color' => $this->header,
                 'h_colorcode' => $h_color,
                 'button_color' => $this->button,
                 'b_colorcode' => $b_color,
-                'card_image' => $this->image_card ? $fileNameCard : null,
-                'bg_image' => $this->image_bg ? $fileNameBg : null,
-            ]);
+            ];
+            if($this->image_card){
+                $data['card_image'] = $this->image_card ? $fileNameCard : null;
+            }
+            if($this->image_bg){
+                $data['bg_image'] = $this->image_bg ? $fileNameBg : null;
+            }
+            $cardStyle = CardStyle::where('pet_code', $this->code)->update($data);
         }
         
         return redirect()->route('StyleSetting.petSetting', ['code' => Session::get('pet-code')])->with('success', __('messages.operation_success'));
