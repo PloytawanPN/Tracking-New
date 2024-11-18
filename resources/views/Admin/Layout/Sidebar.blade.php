@@ -23,6 +23,14 @@
     <div class="h-100" id="leftside-menu-container" data-simplebar>
 
         <ul class="side-nav">
+            <li class="side-nav-title">App</li>
+
+            <li class="side-nav-item">
+                <a href="{{ route('Dashboard') }}" class="side-nav-link">
+                    <i class='bx bxs-dashboard'></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
 
 
             <li class="side-nav-title">Process Manage</li>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthUserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MoneyController;
 use App\Http\Controllers\PetProfileController;
 use App\Http\Controllers\PetsController;
@@ -127,6 +128,7 @@ Route::prefix('/admin/asset-secure-area')->group(function () {
 
     Route::middleware([AdminLoginRedirect::class])->group(function () {
 
+        Route::get('/Dashboard', [DashboardController::class, 'Dashboard'])->name('Dashboard');
         Route::get('/QrCodeList', [QrCodeController::class, 'QrCodeList'])->name('QrCodeList');
         Route::get('/AdminsList', [AdminsController::class, 'AdminsList'])->name('AdminsList');
 
