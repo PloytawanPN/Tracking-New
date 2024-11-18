@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pets\Profile;
 
+use App\Models\CardStyle;
 use App\Models\QrLocation;
 use Crypt;
 use Livewire\Component;
@@ -9,8 +10,8 @@ use App\Models\Pet as PetModel;
 use Session;
 
 class Pet extends Component
-{
-    public $code, $petInfo;
+{ 
+    public $code, $petInfo,$style; 
 
     protected $listeners = ['savelocation'];
 
@@ -18,6 +19,7 @@ class Pet extends Component
     {
         $this->code = Crypt::decrypt($code);
         $this->petInfo = PetModel::where('pet_code', $this->code)->first();
+        $this->style = CardStyle::where('pet_code',$this->code)->first();
         Session::put('profileCode',$code);
     }
 

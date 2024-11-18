@@ -1,4 +1,76 @@
 <div>
+    @if ($style && $style->button_color)
+        @if ($style->button_color == 'custom')
+            <style>
+                .show-field a {
+                    background-image: none;
+                    background-color: {{ $style->b_colorcode }};
+                }
+            </style>
+        @else
+            <style>
+                .show-field a {
+                    background-image: {{ $style->b_colorcode }};
+                }
+            </style>
+        @endif
+    @endif
+    @if ($style && $style->header_color)
+        <style>
+            .header {
+                font-size: 27px;
+                font-weight: 700;
+                background: {{ $style->h_colorcode }};
+                background-clip: text;
+                color: transparent;
+            }
+        </style>
+    @endif
+    @if ($style && $style->bg_image)
+        <style>
+            .background-img {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgb(255, 255, 255);
+                top: 0;
+                left: 0;
+                z-index: -10;
+                background-image: url('/storage/style/bg/{{ $style->bg_image }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: brightness(0.6);
+            }
+
+            @media (max-width: 439px) {
+                .background-img {
+                    background-image: url('/storage/style/card/{{ $style->card_image }}');
+                    filter: brightness(1);
+                }
+            }
+        </style>
+    @endif
+    @if ($style && $style->card_image)
+        <style>
+            .card-form {
+                background-image: url('/storage/style/card/{{ $style->card_image }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            @media (max-width: 439px) {
+                .card-form {
+                    background-image: none;
+                    background-color: rgba(240, 248, 255, 0);
+                    box-shadow: none;
+                }
+            }
+        </style>
+    @endif
+    <div class="background-img"></div>
+
     <div class="card-form" style="max-width: 350px;padding: 35px 35px 50px 35px" wire:ignore.self>
 
 

@@ -1,21 +1,78 @@
 <div>
+    @if ($style && $style->header_color)
+        <style>
+            .header {
+                font-size: 27px;
+                font-weight: 700;
+                background: {{ $style->h_colorcode }};
+                background-clip: text;
+                color: transparent;
+            }
+        </style>
+    @endif
+    @if ($style && $style->bg_image)
+        <style>
+            .background-img {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgb(255, 255, 255);
+                top: 0;
+                left: 0;
+                z-index: -10;
+                background-image: url('/storage/style/bg/{{ $style->bg_image }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: brightness(0.6);
+            }
+            @media (max-width: 754px) {
+                .background-img {
+                    background-image: url('/storage/style/card/{{ $style->card_image }}');
+                    filter: brightness(1);
+                }
+            }
+        </style>
+    @endif
+    @if ($style && $style->card_image)
+        <style>
+            .card-health {
+                background-image: url('/storage/style/card/{{ $style->card_image }}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            @media (max-width: 754px) {
+                .card-health {
+                    background-image: none;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                }
+            }
+        </style>
+    @endif
+    <div class="background-img"></div>
+
+
+
     <div class="card-health padding">
         <label class="header" style="font-size: 20px">{{ __('messages.HealthInformation') }}</label>
         <div class="show-field mt-1">
             <label>{{ __('messages.neutered_status') }}</label>
-            <div class="detail white-space">
+            <div class="detail white-space" style="background-color: white">
                 {{ $health->neutered_status == 1 ? __('messages.NeuteredTrue') : __('messages.NeuteredFalse') }}
             </div>
         </div>
         <div class="show-field mt-1">
             <label>{{ __('messages.health_conditions_allergies') }}</label>
-            <div class="detail white-space" style="min-height: 80px">
+            <div class="detail white-space" style="min-height: 80px;background-color: white">
                 {{ $health->health_allergies ? $health->health_allergies : '-' }}
             </div>
         </div>
         <div class="show-field mt-1">
             <label>{{ __('messages.care_instructions_requirements') }}</label>
-            <div class="detail white-space" style="min-height: 80px">
+            <div class="detail white-space" style="min-height: 80px;background-color: white">
                 {{ $health->care_instruction ? $health->care_instruction : '-' }}
             </div>
         </div>
@@ -180,7 +237,7 @@
         </div>
     </div>
 
-    <div class="card-health mt-3">
+    <div class="card-health mt-3"> 
         <div class="accordion-header">
             <label class="header" style="font-size: 20px">{{ __('messages.allergies_diet') }}</label>
             <i class='bx bx-plus accordion-icon'></i>

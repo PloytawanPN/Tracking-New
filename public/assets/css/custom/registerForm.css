@@ -55,7 +55,7 @@
     transform: scale(1.05);
 }
 
-.frame-preview-2{
+.frame-preview-2 {
     user-select: none;
     width: 120px;
     height: 120px;
@@ -274,7 +274,7 @@ input[type="date"] {
         border-radius: 5px;
         margin: auto;
         box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
-        margin-top: -20px;
+        margin-top: 0;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -285,6 +285,8 @@ input[type="date"] {
     }
 
 }
+
+
 
 .select-field {
     background-color: white;
@@ -336,6 +338,7 @@ input[type="date"] {
     cursor: pointer;
     transition: all ease 0.3s;
 }
+
 .button-class-2 a {
     font-size: 16px;
     width: 85px;
@@ -357,6 +360,7 @@ input[type="date"] {
 .button-class-2 button:hover {
     transform: scale(1.05);
 }
+
 .button-class-2 a:hover {
     transform: scale(1.05);
 }
@@ -448,43 +452,49 @@ input[type="date"] {
     }
 }
 
-.header-detail{
+.header-detail {
     margin-top: 10px;
     font-size: 14px;
     color: rgb(206, 206, 206);
     margin-bottom: 10px;
 }
-.input-login{
+
+.input-login {
     display: flex;
     flex-direction: column;
     text-align: left;
     margin-top: 10px
 }
-.input-login label{
+
+.input-login label {
     font-size: 15px;
     color: rgb(51, 51, 51);
 }
-.input-login input{
+
+.input-login input {
     border: none;
     outline: 1px solid rgb(216, 216, 216);
     padding: 8px 10px;
     border-radius: 5px;
     margin-top: 5px;
 }
-.login-footer{
+
+.login-footer {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 10px;
 }
-.login-footer a{
+
+.login-footer a {
     font-size: 13px;
     color: rgb(77, 77, 77);
     text-decoration: none;
     margin-top: 2px;
 }
-.signin-bt{
+
+.signin-bt {
     padding: 6px;
     width: 120px;
     border: none;
@@ -494,10 +504,11 @@ input[type="date"] {
     font-size: 15px;
     cursor: pointer;
     border-radius: 5px;
-    background: linear-gradient(to right,  #004D7A, #008793, #00BF72);
+    background: linear-gradient(to right, #004D7A, #008793, #00BF72);
     color: white;
     transition: ease all 0.4s;
 }
-.signin-bt:hover{
+
+.signin-bt:hover {
     transform: scale(1.05);
 }

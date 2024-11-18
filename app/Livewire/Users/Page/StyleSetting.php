@@ -103,7 +103,7 @@ class StyleSetting extends Component
             $b_color = $this->color_button;
         }
 
-        if ($this->image_card) {
+        if ($this->image_card!=null&&$this->image_card!='empty') {
             $folderPath = 'style/card';
             $files = Storage::disk('public')->files($folderPath);
             foreach ($files as $file) {
@@ -112,11 +112,11 @@ class StyleSetting extends Component
                 }
             }
 
-            $fileNameCard = $this->code . '_' . now()->format('Ymd_His') . '_' . Str::random(10) . '.' . '.png';
+            $fileNameCard = $this->code . '_' . now()->format('Ymd_His') . '_' . Str::random(10) . '.' . 'png';
             $imagePath = $this->image_card->storeAs('style/card', $fileNameCard, 'public');
         }
 
-        if ($this->image_bg) {
+        if ($this->image_bg!=null&&$this->image_bg!='empty') {
             $folderPath = 'style/bg';
             $files = Storage::disk('public')->files($folderPath);
             foreach ($files as $file) {
@@ -125,7 +125,7 @@ class StyleSetting extends Component
                 }
             }
 
-            $fileNameBg = $this->code . '_' . now()->format('Ymd_His') . '_' . Str::random(10) . '.' . '.png';
+            $fileNameBg = $this->code . '_' . now()->format('Ymd_His') . '_' . Str::random(10) . '.' . 'png';
             $imagePath = $this->image_bg->storeAs('style/bg', $fileNameBg, 'public');
         }
 
@@ -136,8 +136,8 @@ class StyleSetting extends Component
                 'h_colorcode' => $h_color,
                 'button_color' => $this->button,
                 'b_colorcode' => $b_color,
-                'card_image' => $this->image_card ? $fileNameCard : null,
-                'bg_image' => $this->image_bg ? $fileNameBg : null,
+                'card_image' => ($this->image_card!=null&&$this->image_card!='empty') ? $fileNameCard : null,
+                'bg_image' => ($this->image_bg!=null&&$this->image_bg!='empty')? $fileNameBg : null,
             ]);
         } else {
             $data = [
@@ -146,11 +146,15 @@ class StyleSetting extends Component
                 'button_color' => $this->button,
                 'b_colorcode' => $b_color,
             ];
-            if($this->image_card){
-                $data['card_image'] = $this->image_card ? $fileNameCard : null;
+            if($this->image_card!=null&&$this->image_card!='empty'){
+                $data['card_image'] = $fileNameCard;
+            }elseif($this->image_card=='empty'){
+                $data['card_image'] = null;
             }
-            if($this->image_bg){
-                $data['bg_image'] = $this->image_bg ? $fileNameBg : null;
+            if($this->image_bg!=null&&$this->image_bg!='empty'){
+                $data['bg_image'] = $fileNameBg;
+            }elseif($this->image_bg=='empty'){
+                $data['bg_image'] = null;
             }
             $cardStyle = CardStyle::where('pet_code', $this->code)->update($data);
         }

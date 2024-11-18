@@ -68,6 +68,7 @@
 .show-field .detail {
     width: 100%;
     outline: 1px solid rgb(209, 209, 209);
+    background-color: white;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
@@ -79,6 +80,7 @@
 .show-field .own_detail {
     width: calc(100% - 20px);
     outline: 1px solid rgb(209, 209, 209);
+    background-color: white;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 15px;
@@ -95,14 +97,14 @@
 @media (max-width: 920px) {
     .card-pet-profile {
         width: calc(100%);
-        margin-top: 0;
+        margin-top: 0px;
         border-radius: none;
         flex-direction: column;
         box-shadow: none;
         padding: 0;
+        border-radius: 0;
 
     }
-
     .image-profile {
         width: calc(100% - 80px);
         aspect-ratio: 2/1;
