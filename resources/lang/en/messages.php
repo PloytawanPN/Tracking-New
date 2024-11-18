@@ -276,4 +276,7 @@ return [
     'please_color'=>'Please Select Color',
 
     'dfcolor'=>'Default',
+
+    'custom'=>'Custom',
+    'resetpicture' => "Reset Picture",
 ];

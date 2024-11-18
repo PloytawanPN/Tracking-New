@@ -13,7 +13,7 @@
         .button-class-2 button:hover {
             transform: scale(1.009);
         }
-
+ 
         .image-profile {
             width: 100%;
             height: 100%;

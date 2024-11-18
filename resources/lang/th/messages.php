@@ -275,4 +275,7 @@ return [
     'please_color'=>'โปรดเลือกสี',
 
     'dfcolor'=>'พื้นฐาน',
+
+    'custom'=>'กำหนดเอง',
+    'resetpicture' => "รีเซ็ตรูปภาพ",
 ];
