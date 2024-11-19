@@ -137,23 +137,37 @@
                                     <div class="d-flex">
                                         <div class="flex-shrink-0">
                                             <div class="avatar-sm rounded">
-                                                <span class="avatar-title bg-primary-lighten h3 my-0 text-primary rounded">
-                                                    <i class="mdi mdi-currency-eth"></i>
-                                                </span>
+                                                @if ($sumary < 0)
+                                                    <span
+                                                        class="avatar-title bg-danger-lighten h3 my-0 text-danger rounded">
+                                                        <i class="mdi mdi-currency-eth"></i>
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="avatar-title bg-success-lighten h3 my-0 text-success rounded">
+                                                        <i class="mdi mdi-currency-eth"></i>
+                                                    </span>
+                                                @endif
+
                                             </div>
                                         </div>
                                         <div class="flex-grow-1 ms-3">
-                                            <h4 class="mt-0 mb-1 font-20">12,500 THB</h4>
-                                            <p class="mb-0 text-muted"><i class="mdi mdi-arrow-up-bold text-success"></i>
-                                                My Finances</p>
+                                            <h4 class="mt-0 mb-1 font-20">{{ number_format($sumary) }} THB</h4>
+                                            <p class="mb-0 text-muted">
+                                                @if ($sumary < 0)
+                                                    <i class="mdi mdi-arrow-down-bold text-danger"></i>
+                                                @else
+                                                    <i class="mdi mdi-arrow-up-bold text-success"></i>
+                                                @endif
+                                                My Finances
+                                            </p>
                                         </div>
                                     </div>
 
                                     <div class="row align-items-end justify-content-between mt-3">
                                         <div class="col-sm-6">
-                                            <h4 class="mt-0 text-muted fw-semibold mb-1">Loss 10%</h4>
-                                            <p class="text-muted mb-0">Loss 1200 THB</p>
-
+                                            <h4 class="mt-0 text-muted fw-semibold mb-1">Loss
+                                                {{ number_format($sumary_per) }}%</h4>
                                         </div> <!-- end col -->
 
                                         <div class="col-sm-5">

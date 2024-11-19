@@ -21,7 +21,7 @@ class Login extends Component
         try {
             $this->validate();
             if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-                return redirect()->route('QrCodeList');
+                return redirect()->route('Dashboard');
             } else {
                 $this->dispatch('loginFalse', [
                     'message' => 'Your email or password is incorrect. Please check and try again.',

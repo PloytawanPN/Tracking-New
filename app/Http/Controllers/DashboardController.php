@@ -17,10 +17,15 @@ class DashboardController extends Controller
 
 
         $totalSale = $Sale->sum('total_item_price');
+
         $product_deli = $Sale->sum('shipping_fee')+$Production->sum('shipping_cost');
         $total_price = $Production->sum('total_price');
         $Expense_total = $Expense->sum('amount');
+
         $total = $Expense_total+$total_price+$product_deli;
+
+        $sumary = $totalSale-$total;
+        $sumary_per = ($sumary/$total)*100;
 
 
         return view('Admin.Dashboard.index',[
@@ -29,6 +34,8 @@ class DashboardController extends Controller
             'total_price'=>$total_price,
             'total'=>$total,
             'Expense_total'=>$Expense_total,
+            'sumary'=>$sumary,
+            'sumary_per'=>$sumary_per,
         ]);
     }
 }

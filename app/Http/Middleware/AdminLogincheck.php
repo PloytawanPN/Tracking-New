@@ -17,7 +17,7 @@ class AdminLogincheck
     public function handle(Request $request, Closure $next, $guard = null): Response
     {
         if (Auth::guard($guard)->check()) {
-            return redirect()->route(route: 'QrCodeList');
+            return redirect()->route(route: 'Dashboard');
         } else {
             return $next($request);
         }
